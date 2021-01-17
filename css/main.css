@@ -1,0 +1,119 @@
+body
+{
+    background-image: url(https://png.pngtree.com/thumb_back/fw800/back_our/20190621/ourmid/pngtree-movie-popcorn-delicious-simple-flat-red-banner-image_176025.jpg);
+  
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-size: cover;
+    background-attachment: fixed;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+.naStred
+{
+    position: fixed;
+    top : 50%;
+    left: 50%;
+    transform : translate(-50%, -50%);
+}
+
+
+.cover
+{
+    color:black;
+    text-shadow: 2px 2px 4px orange;
+}
+
+.sledovat
+{
+    position: fixed;
+    top : 110%;
+    left: 50%;
+    transform : translate(-50%, -50%);
+
+    text-shadow: none;
+}
+
+.nadpis
+{
+    text-align: center;
+    font-family: "Palatino Linotype", "Book Antiqua";
+} 
+
+
+.cena
+{
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+
+.register
+{
+    text-align: center;
+    margin-right: 25%;
+    margin-left: 25%;
+    margin-top: 80px;
+    align-self: center;
+}
+
+.text
+{
+    font-family: "Palatino Linotype", "Book Antiqua";
+}
+
+.ponuka
+{
+    position: sticky;
+    margin-left: 43%;
+}
+
+.ucet
+{
+    margin-top: 50px;
+    margin-left: 200px;
+}
+
+.uprava
+{
+    text-align: center;
+    margin-right: 30%;
+    margin-left: 20%;
+    align-self: center;
+}
+
+.odsad
+{
+    margin-right: 10px;
+}
+
+.odsad2
+{
+    margin-right: 70%;
+}
+
+.prihl
+{
+    text-align: center;
+    margin-right: 25%;
+    margin-left: 25%;
+    margin-top: 35px;
+    align-self: center;
+}
+
+.potvrd
+{
+    margin-top: 10px;
+}
+
+.potvrd2
+{
+    margin-top: 50px;
+}
+
+.nove
+{
+    display: block;
+}
