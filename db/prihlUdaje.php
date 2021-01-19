@@ -1,5 +1,5 @@
 <?php
-include_once 'databaza.php';
+include_once 'dbUdaje.php';
 
 class prihlasovacieUdaje
 {
@@ -20,19 +20,9 @@ class prihlasovacieUdaje
         return $this->heslo;
     }
 
-    public function setHeslo($heslo): void
-    {
-        $this->heslo = $heslo;
-    }
-
    public function getLogin()
     {
         return $this->login;
-    }
-
-    public function setLogin($login): void
-    {
-            $this->text = $login;
     }
 
     public function skontrolujHeslo(): bool

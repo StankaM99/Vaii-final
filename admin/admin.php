@@ -1,9 +1,44 @@
 <?php
-require "databaza.php";
+require "../db/dbUdaje.php";
+require "../db/dbPrispevok.php";
+
+
+$database = new Databaza();
+$datab = new Databaza2();
+
+if(isset($_POST['odstran']))
+{
+    $pom = $database->odstran($_POST['login1']);
+
+    if($pom)
+    {
+        header("Location: admin.php" );
+    }
+    else{
+        echo '<script>alert("Nepodarilo sa odstrániť používateľa.")</script>';
+    }
+}
+
+
+if(isset($_POST['odstranPrispevok']))
+{
+    $pom = $datab->odstranPrisp($_POST['id']);
+
+    if($pom)
+    {
+        header("Location: admin.php" );
+    }
+    else{
+        echo '<script>alert("Nepodarilo sa odstrániť prispevok.")</script>';
+    }
+}
+
+
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Semestrálna práca</title>
@@ -14,11 +49,12 @@ require "databaza.php";
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
-    <link rel = "stylesheet" href = "css/main.css">
+    <link rel = "stylesheet" href = "../css/main.css">
 </head>
 
 <body>
 <nav id="navbar" class="navbar sticky-top navbar-expand-md navbar-light mb-4" style="background-color:coral;">
+
 
     <a class="navbar-brand disabled">
         <img width="40" height="40" src="https://image.flaticon.com/icons/png/512/31/31087.png" alt="ob">
@@ -32,29 +68,35 @@ require "databaza.php";
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item ">
-                <a id="Home" class="nav-link" href="index.html">Home</a>
+                <a id="Home" class="nav-link" href="../index.php">Home</a>
             </li>
 
             <li class="nav-item ">
-                <a id="Price" class="nav-link" href="price.html">Ceny</a>
+                <a id="Recenzie" class="nav-link " href="../recenzie.php">Filmove novinky</a>
             </li>
 
             <li class="nav-item ">
-                <a id="Recenzie" class="nav-link " href="recenzie.php">Recenzie</a>
+                <a id="Prisp" class="nav-link " href="../prispevky.php">Prispevky</a>
             </li>
-
-
         </ul>
     </div>
 
     <div class="odsad">
-        <a class="btn btn-block btn-warning" href="price.html">Odhlasenie</a>
+        <a class="btn btn-block btn-warning" href="../signUp.php">Odhlasenie</a>
+    </div>
+
+    <div class="odsad">
+        <a class="btn btn-block btn-warning" href="adminRec.php">Pridat filmovu novinku</a>
     </div>
 
 </nav>
 
     <div class="register">
 
+        <div class="cover">
+        <h3>Zaregistrovany pouzivatelia</h3>
+        <br>
+        </div>
         <table class="table table-danger">
             <thead class="thead-light">
             <tr>
@@ -70,7 +112,7 @@ require "databaza.php";
             $database = new Databaza();
 
             $udaje = $database->load();
-            /** @var prihlasovacieUdaje $udaj */
+            /** @var prihlUdaje $udaj */
 
             $x = 1;
             foreach($udaje as $udaj)
@@ -81,7 +123,6 @@ require "databaza.php";
                 
                 <td>
                    <p>'. $udaj->getLogin().
-
                    '</p> 
                 </td>
                 
@@ -106,24 +147,74 @@ require "databaza.php";
             </tbody>
         </table>
 
+        <br>
 
-            <?php
-            $database = new Databaza();
-            if(isset($_POST['login1']))
-            {
-                $pom = $database->odstran($_POST['login1']);
-
-                if($pom)
-                {
-                    header("Location: admin.php" );
-                }
-                else{
-                    echo '<script>alert("Nepodarilo sa odstrániť používateľa.")</script>';
-                }
-            }
-            ?>
+    <div class="cover">
+        <h3>Prispevky od pouzivatelov</h3>
+        <br>
     </div>
 
+        <table class="table table-danger">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Login</th>
+                <th scope="col">Nadpis</th>
+                <th scope="col">Prispevok</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+        <tbody>
 
+
+            <?php
+            $datab = new Databaza2();
+
+            $prispevky = $datab->load();
+            /** @var userPrispev $prispevok */
+
+            foreach($prispevky as $prispevok)
+            {
+                echo '
+                <tr>
+                <th scope="row"> ' . $prispevok->getId() .'</th>
+                
+                <td>
+                   <p>'. $prispevok->getLogin().
+
+                    '</p> 
+                </td>
+                
+                <td>
+                    <p>'. $prispevok->getNadpis() .
+                    '</p>
+                </td>
+                
+                <td>
+                    <p>'. $prispevok->getText() .
+                    '</p>
+                </td>
+                
+                <td>
+                <form method="post">
+                    <input type="hidden" name="id" value= '. $prispevok->getId() .' >
+                    <input class="btn btn-warning" type="submit" name="odstranPrispevok" value="Odstrániť prispevok">
+                </form>
+                </td>
+                
+                </tr>
+                ';
+
+                $x++;
+
+                /*  PRIDAT TLACITKO ZDIELAT KTORE ZVEREJNI PRISPEVOK V RECENZIACH */
+            }
+            ?>
+            </tbody>
+        </table>
+
+    </div>
 </body>
 </html>
+
+

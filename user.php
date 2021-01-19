@@ -1,8 +1,10 @@
 <?php
 session_start();
-require "databaza.php";
+require "db/dbUdaje.php";
+require "db/dbPrispevok.php";
 
 $database = new Databaza();
+$datab = new Databaza2();
 
 if(isset($_POST['uprava'])) {
 
@@ -38,53 +40,34 @@ if(isset($_POST['odstran']))
         echo '<script>alert("Chyba.")</script>';
     }
 }
+
+
+if(isset($_POST['prispevok'])) {
+    $pom = $datab->save($_SESSION['meno'], $_POST['nadpis'],$_POST['text']);
+
+    if ($pom) {
+        header("Location: user.php");
+        echo '<script>alert("Prispevok pridany")</script>';
+    } else {
+        echo '<script>alert("Nepodarilo sa pridat prispevok.")</script>';
+    }
+}
 ?>
 
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>Semestrálna práca</title>
-    <!-- CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
-    <!-- jQuery and JS bundle w/ Popper.js -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-
-    <link rel = "stylesheet" href = "css/main.css">
-</head>
+    <?php
+        echo file_get_contents("head.php");
+    ?>
 <body>
 <nav id="navbar" class="navbar sticky-top navbar-expand-md navbar-light mb-4" style="background-color:coral;">
 
-    <a class="navbar-brand disabled">
-        <img width="40" height="40" src="https://image.flaticon.com/icons/png/512/31/31087.png" alt="ob">
-    </a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-
-            <li class="nav-item ">
-                <a id="Home" class="nav-link" href="index.html">Home</a>
-            </li>
-
-            <li class="nav-item ">
-                <a id="Price" class="nav-link" href="price.html">Ceny</a>
-            </li>
-
-            <li class="nav-item ">
-                <a id="Recenzie" class="nav-link " href="recenzie.php">Recenzie</a>
-            </li>
-
-        </ul>
-    </div>
+    <?php
+        echo file_get_contents("navbar.php");
+    ?>
 
     <div class="odsad">
-        <a class="btn btn-block btn-warning" href="price.html">Odhlasenie</a>
+        <a class="btn btn-block btn-warning" href="signUp.php">Odhlasenie</a>
     </div>
 
 </nav>
@@ -106,14 +89,12 @@ if(isset($_POST['odstran']))
         <div class="col-4">
             <form method="post">
                         <div class="cover">
-                            <label for="zmena_hesla">
+                            <label >
                                 Zmena hesla:
                             </label>
                         </div>
-                        <form method="post" id="passwordForm">
                             <input type="password" class="input-lg form-control" name="password" id="password" placeholder="nove heslo" required >
                             <input type="password" class="input-lg form-control" name="password1" id="password1" placeholder="potvdenie hesla" required>
-                        </form>
                     <div class="potvrd">
                         <input class="btn btn-warning" type="submit" name="uprava" value="Potvrdenie zmeny">
                     </div>
@@ -125,14 +106,12 @@ if(isset($_POST['odstran']))
         <div class="col-5">
             <form method="post">
                 <div class="cover">
-                        <label for="zmena_hesla">
+                        <label>
                             Zrusenie uctu: pre odstranenie uctu prosim zadajte heslo
                         </label>
                 </div>
-                        <form method="post" id="passwordForm">
-                            <input type="password" class="input-lg form-control" name="password" id="password" placeholder="heslo" required >
-                            <input type="password" class="input-lg form-control" name="password1" id="password1" placeholder="potvdenie hesla" required>
-                        </form>
+                            <input type="password" class="input-lg form-control" name="password" id="password2" placeholder="heslo" required >
+                            <input type="password" class="input-lg form-control" name="password1" id="password3" placeholder="potvdenie hesla" required>
                     <div class="potvrd">
                         <input class="btn btn-warning" type="submit" name="uprava" value="Potvrdenie zmeny">
                     </div>
@@ -142,16 +121,18 @@ if(isset($_POST['odstran']))
     </div>
 </div>
 
-<form>
+<div class="container">
+<div class="move">
+<form method="post">
     <div class="ucet">
         <div class="cover">
         <h5> Pridat prispevok</h5>
         </div>
-        <label for="nadpis">Nadpis:</label><br>
-        <input type="text" id="nadpis" name="nadpis">
+        <label>Nadpis:</label><br>
+        <input type="text" id="nadpis" name="nadpis" required>
             <br>
-        <label for="text">Text:</label><br>
-        <textarea id="textarea" name="text" rows="6" cols="140">
+        <label>Text:</label><br>
+        <textarea id="textarea" name="text" rows="6" cols="140" required>
         </textarea>
 
             <div class="potvrd">
@@ -159,5 +140,8 @@ if(isset($_POST['odstran']))
             </div>
     </div>
 </form>
+</div>
+</div>
 </body>
 </html>
+

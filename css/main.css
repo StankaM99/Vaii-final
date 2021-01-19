@@ -55,7 +55,16 @@ body
     text-align: center;
     margin-right: 25%;
     margin-left: 25%;
-    margin-top: 80px;
+    margin-top: 60px;
+    align-self: center;
+}
+
+.register2
+{
+    text-align: center;
+    margin-right: 15%;
+    margin-left: 15%;
+    margin-top: 60px;
     align-self: center;
 }
 
@@ -76,12 +85,25 @@ body
     margin-left: 200px;
 }
 
+.ucet2
+{
+    margin-top: 50px;
+    margin-left: 250px;
+}
+
 .uprava
 {
     text-align: center;
     margin-right: 30%;
     margin-left: 20%;
     align-self: center;
+}
+
+.uprava2
+{
+    text-align: center;
+    margin-right: 25%;
+    margin-left: 25%;
 }
 
 .odsad
@@ -92,6 +114,11 @@ body
 .odsad2
 {
     margin-right: 70%;
+}
+
+.odsad3
+{
+    margin-right: 45%;
 }
 
 .prihl
@@ -117,3 +144,29 @@ body
 {
     display: block;
 }
+
+.prispev
+{
+    margin-top: 50px;
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+
+.move
+{
+    margin-left: -18%;
+}
+
+.rec
+{
+    margin-left: 10px;
+}
+
+.bonus
+{
+    position: relative;
+    bottom: -65vh;
+    top: 1vw;
+}
+

@@ -1,5 +1,5 @@
 <?php
-include 'prihlasovacieUdaje.php';
+include 'prihlUdaje.php';
 
 class Databaza
 {
@@ -25,7 +25,7 @@ class Databaza
    public function load()
     {
         $udaje = [];
-        $dbUdaje = $this->database->query('SELECT * FROM prihludaje');
+        $dbUdaje = $this->database->query('SELECT * FROM udaje.prihludaje');
 
         foreach ($dbUdaje as $udaj)
         {
@@ -36,7 +36,7 @@ class Databaza
 
     public function skontrolujLogin() : bool
     {
-        $dbLogin = $this->database->query('SELECT login from prihludaje');
+        $dbLogin = $this->database->query('SELECT login from udaje.prihludaje');
 
         foreach ($dbLogin as $login) {
             if ($login['login'] == $_POST['meno']) {
@@ -52,7 +52,7 @@ class Databaza
         try {
             if($this->skontrolujLogin()) {
                 if ($udaj->skontrolujHeslo()) {
-                    $sql = 'INSERT INTO prihludaje(login, heslo) VALUES (?,?)';
+                    $sql = 'INSERT INTO udaje.prihludaje(login, heslo) VALUES (?,?)';
                     $this->database->prepare($sql)->execute([$udaj->getLogin(), $udaj->getHeslo()]);
                     return true;
                 } else {
@@ -75,7 +75,7 @@ class Databaza
         try{
             if($noveHeslo == $zopakuj)
             {
-                $sql = "UPDATE prihludaje SET heslo=? WHERE login=?";
+                $sql = "UPDATE udaje.prihludaje SET heslo=? WHERE login=?";
                 $this->database->prepare($sql)->execute([$noveHeslo, $zadlogin]);
                 echo '<script>alert("Heslo uspesne zmenene.")</script>';
                 return true;
@@ -99,7 +99,7 @@ class Databaza
             if ($data['heslo'] == $zadHeslo) {
                 if ($zadHeslo == $overHeslo) {
                     try {
-                        $sql1 = "DELETE FROM prihludaje WHERE login=?";
+                        $sql1 = "DELETE FROM udaje.prihludaje WHERE login=?";
                         $this->database->prepare($sql1)->execute([$zadlogin]);
                         return 1;
                     } catch (PDOException $e) {
@@ -119,7 +119,7 @@ class Databaza
     public function odstran($zadlogin): bool
     {
         try {
-            $sql1 = "DELETE FROM prihludaje WHERE login=?";
+            $sql1 = "DELETE FROM udaje.prihludaje WHERE login=?";
             $this->database->prepare($sql1)->execute([$zadlogin]);
             return true;
         } catch (PDOException $e) {
@@ -132,7 +132,7 @@ class Databaza
 
     public function prihlas($zadlogin, $zadHeslo): int
     {
-        $sql = $this->database->prepare("SELECT * FROM prihludaje WHERE login = ?");
+        $sql = $this->database->prepare("SELECT * FROM udaje.prihludaje WHERE login = ?");
         $sql->execute([$zadlogin]);
 
             if( $data = $sql->fetch()) {
