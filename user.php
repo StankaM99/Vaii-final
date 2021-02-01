@@ -11,7 +11,6 @@ if(isset($_POST['uprava'])) {
     $pom = $database->noveHeslo($_SESSION['meno'], $_POST['password'],$_POST['password1']);
 
     if ($pom) {
-        header("Location: user.php");
         echo '<script>alert("Heslo uspesne zmenene.")</script>';
     } else {
         echo '<script>alert("Nepodarilo sa zmeniť heslo.")</script>';
@@ -46,7 +45,6 @@ if(isset($_POST['prispevok'])) {
     $pom = $datab->save($_SESSION['meno'], $_POST['nadpis'],$_POST['text']);
 
     if ($pom) {
-        header("Location: user.php");
         echo '<script>alert("Prispevok pridany")</script>';
     } else {
         echo '<script>alert("Nepodarilo sa pridat prispevok.")</script>';

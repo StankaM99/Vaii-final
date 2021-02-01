@@ -12,7 +12,7 @@ if(isset($_POST['odstran']))
 
     if($pom)
     {
-        header("Location: admin.php" );
+        echo '<script>alert("Podarilo sa odstrániť pouzivatela.")</script>';
     }
     else{
         echo '<script>alert("Nepodarilo sa odstrániť používateľa.")</script>';
@@ -26,7 +26,7 @@ if(isset($_POST['odstranPrispevok']))
 
     if($pom)
     {
-        header("Location: admin.php" );
+        echo '<script>alert("Podarilo sa odstrániť prispevok.")</script>';
     }
     else{
         echo '<script>alert("Nepodarilo sa odstrániť prispevok.")</script>';
