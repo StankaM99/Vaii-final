@@ -48,9 +48,10 @@ if(isset($_POST['inputPassword'])) {
                 <a id="Home" class="nav-link" href="../index.php">Home</a>
             </li>
 
+            <!--
             <li class="nav-item ">
                 <a id="Recenzie" class="nav-link " href="../recenzie.php">Filmove novinky</a>
-            </li>
+            </li> -->
 
             <li class="nav-item ">
                 <a id="Prisp" class="nav-link " href="../prispevky.php">Prispevky</a>

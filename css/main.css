@@ -30,10 +30,130 @@ body
     max-height: 650px !important;
 }
 
+.cover
+{
+    color:black;
+    text-shadow: 2px 2px 4px orange;
+    text-align: center;
+    font-family: "Palatino Linotype", "Book Antiqua";
+}
+
+.ponuka
+{
+    position: sticky;
+    margin-left: 40%;
+}
+
+.uprava2
+{
+    text-align: center;
+    margin-right: 15%;
+    margin-left: 15%;
+}
+
+.bonus
+{
+    position: relative;
+    bottom: -65vh;
+    top: 1vw;
+
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.naStred
+{
+    position: fixed;
+    top : 50%;
+    left: 50%;
+    transform : translate(-50%, -50%);
+}
+
+.register
+{
+    text-align: center;
+    margin-right: 25%;
+    margin-left: 25%;
+    margin-top: 60px;
+    align-self: center;
+}
+
+.register2
+{
+    text-align: center;
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-top: 10px;
+    align-self: center;
+}
+
+.nadpis
+{
+    text-align: center;
+    font-family: "Palatino Linotype", "Book Antiqua";
+}
+
+
+
+.potvrd
+{
+    margin-top: 40px;
+}
+
+.potvrd2
+{
+    margin-top: 20px;
+}
+
+
+.ucet2
+{
+    margin-top: 50px;
+    margin-left: 250px;
+}
+
+.film
+{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+
 /*@media (max-width: 688px) {
     .carousel-item > img {
         max-height: 146px;
     }
 }*/
 
+@media (min-width: 34em) {
+    .card-columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
+}
+
+@media (min-width: 48em) {
+    .card-columns {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
+    }
+}
+
+@media (min-width: 62em) {
+    .card-columns {
+        -webkit-column-count: 4;
+        -moz-column-count: 4;
+        column-count: 4;
+    }
+}
+
+@media (min-width: 75em) {
+    .card-columns {
+        -webkit-column-count: 5;
+        -moz-column-count: 5;
+        column-count: 5;
+    }
+}
 

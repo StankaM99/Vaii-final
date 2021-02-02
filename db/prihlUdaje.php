@@ -1,5 +1,5 @@
 <?php
-include_once 'dbUdaje.php';
+include_once 'dbSerial.php';
 
 class prihlasovacieUdaje
 {

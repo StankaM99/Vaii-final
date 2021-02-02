@@ -9,7 +9,12 @@ $database = new Databaza();
 if(isset($_POST['prihlas'])) {
     $pom = $database->prihlas($_POST['meno'], $_POST['heslo']);
 
-    if ($pom == 1) {
+    if($pom == 4)
+    {
+        header("Location: admin/admin.php");
+    }
+
+    else if ($pom == 1) {
         $_SESSION['meno'] = $_POST['meno'];
         header("Location: user.php");
     } else if($pom == 2){
@@ -38,35 +43,30 @@ if(isset($_POST['prihlas'])) {
             ?>
 
             <div class="odsad">
-                <a class="btn btn-block btn-warning" href="admin/aHeslo.php">ADMIN</a>
-            </div>
-
-            <div class="odsad">
                 <a class="btn btn-block btn-warning" href="register.php">Zaregistrujte sa</a>
             </div>
 
-          </nav>
+        </nav>
 
-          <div class="naStred">
-          <div class="nadpis">
-              <div class="cover">
+        <div class="naStred">
+              <div class="nadpis">
+                  <div class="cover">
+                      <form method="post" class="form-signin">
+                            <img class="mb-4" src="https://cdn.onlinewebfonts.com/svg/img_202755.png" alt="" width="65" height="65">
 
-          <form method="post" class="form-signin">
-            <img class="mb-4" src="https://cdn.onlinewebfonts.com/svg/img_202755.png" alt="" width="65" height="65">
+                            <h1 class="h3 mb-3 font-weight-normal">Prihlásiť sa</h1>
 
-            <h1 class="h3 mb-3 font-weight-normal">Prihlásiť sa</h1>
+                            <label for="inputLogin" class="sr-only">Login</label>
+                            <input type="text" id="inputLogin" class="form-control" name="meno" placeholder="Login" required autofocus>
 
-            <label for="inputLogin" class="sr-only">Login</label>
-            <input type="text" id="inputLogin" class="form-control" name="meno" placeholder="Login" required autofocus>
-
-            <label for="inputPassword" class="sr-only">Heslo</label>
-            <input type="password" id="inputPassword" class="form-control"  name="heslo" placeholder="Heslo" required>
-            <br>
-              <input class="btn btn-warning" type="submit" name="prihlas" value="Prihlásiť sa">
-          </form>
+                            <label for="inputPassword" class="sr-only">Heslo</label>
+                            <input type="password" id="inputPassword" class="form-control"  name="heslo" placeholder="Heslo" required>
+                            <br>
+                              <input class="btn btn-warning" type="submit" name="prihlas" value="Prihlásiť sa">
+                      </form>
+                </div>
+            </div>
         </div>
-      </div>
-          </div>
 
     </body>
 </html>

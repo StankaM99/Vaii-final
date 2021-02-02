@@ -71,9 +71,10 @@ if(isset($_POST['odstranPrispevok']))
                 <a id="Home" class="nav-link" href="../index.php">Home</a>
             </li>
 
+            <!--
             <li class="nav-item ">
                 <a id="Recenzie" class="nav-link " href="../recenzie.php">Filmove novinky</a>
-            </li>
+            </li> -->
 
             <li class="nav-item ">
                 <a id="Prisp" class="nav-link " href="../prispevky.php">Prispevky</a>
@@ -81,12 +82,13 @@ if(isset($_POST['odstranPrispevok']))
         </ul>
     </div>
 
+
     <div class="odsad">
-        <a class="btn btn-block btn-warning" href="../signUp.php">Odhlasenie</a>
+        <a class="btn btn-block btn-warning" href="tip.php">Pridat tip</a>
     </div>
 
     <div class="odsad">
-        <a class="btn btn-block btn-warning" href="adminRec.php">Pridat filmovu novinku</a>
+        <a class="btn btn-block btn-warning" href="../signUp.php">Odhlasenie</a>
     </div>
 
 </nav>
@@ -94,126 +96,127 @@ if(isset($_POST['odstranPrispevok']))
     <div class="register">
 
         <div class="cover">
-        <h3>Zaregistrovany pouzivatelia</h3>
-        <br>
+            <h3>Zaregistrovany pouzivatelia</h3>
+            <br>
         </div>
+
         <table class="table table-danger">
             <thead class="thead-light">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Login</th>
-                <th scope="col">Heslo</th>
-                <th scope="col"></th>
-            </tr>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Login</th>
+                    <th scope="col">Heslo</th>
+                    <th scope="col"></th>
+                </tr>
             </thead>
+
             <tbody>
 
-            <?php
-            $database = new Databaza();
+                <?php
+                    $database = new Databaza();
 
-            $udaje = $database->load();
-            /** @var prihlUdaje $udaj */
+                    $udaje = $database->load();
+                    /** @var prihlUdaje $udaj */
 
-            $x = 1;
-            foreach($udaje as $udaj)
-            {
-                echo '
-                <tr>
-                <th scope="row"> ' . $x .'</th>
-                
-                <td>
-                   <p>'. $udaj->getLogin().
-                   '</p> 
-                </td>
-                
-                <td>
-                    <p>'. $udaj->getHeslo() .
-                    '</p>
-                </td>
-                
-                <td>
-                <form method="post">
-                    <input type="hidden" name="login1" value= '. $udaj->getLogin() .' >
-                    <input class="btn btn-warning" type="submit" name="odstran" value="Odstrániť">
-                </form>
-                </td>
-                
-                </tr>
-                ';
+                    $x = 1;
+                        foreach($udaje as $udaj)
+                        {
+                            echo '
+                            <tr>
+                                <th scope="row"> ' . $x .'</th>
+                                
+                                <td>
+                                   <p>'. $udaj->getLogin().
+                                   '</p> 
+                                </td>
+                                
+                                <td>
+                                    <p>'. $udaj->getHeslo() .
+                                    '</p>
+                                </td>
+                                
+                                <td>
+                                    <form method="post">
+                                        <input type="hidden" name="login1" value= '. $udaj->getLogin() .' >
+                                        <input class="btn btn-warning" type="submit" name="odstran" value="Odstrániť">
+                                    </form>
+                                </td>
+                            </tr>
+                            ';
 
-                $x++;
-            }
-            ?>
+                            $x++;
+                        }
+                ?>
             </tbody>
         </table>
+    </div>
 
         <br>
 
-    <div class="cover">
-        <h3>Prispevky od pouzivatelov</h3>
-        <br>
+    <div class="register2">
+        <div class="cover">
+            <h3>Prispevky od pouzivatelov</h3>
+            <br>
+        </div>
+
+            <table class="table table-danger">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Login</th>
+                        <th scope="col-md">Nadpis</th>
+                        <th scope="col-lg">Prispevok</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <?php
+                        $datab = new Databaza2();
+
+                        $prispevky = $datab->load();
+                        /** @var userPrispev $prispevok */
+
+                            foreach($prispevky as $prispevok)
+                            {
+                                echo '
+                                <tr>
+                                    <th scope="row"> ' . $prispevok->getId() .'</th>
+                                    
+                                    <td>
+                                       <p>'. $prispevok->getLogin().
+
+                                        '</p> 
+                                    </td>
+                                    
+                                    <td>
+                                        <p>'. $prispevok->getNadpis() .
+                                        '</p>
+                                    </td>
+                                    
+                                    <td>
+                                        <p>'. $prispevok->getText() .
+                                        '</p>
+                                    </td>
+                                    
+                                    <td>
+                                    <form method="post">
+                                        <input type="hidden" name="id" value= '. $prispevok->getId() .' >
+                                        <input class="btn btn-warning" type="submit" name="odstranPrispevok" value="Odstrániť prispevok">
+                                    </form>
+                                    </td>
+                                </tr>
+                                ';
+
+                                $x++;
+
+                                /*  PRIDAT TLACITKO ZDIELAT KTORE ZVEREJNI PRISPEVOK V RECENZIACH */
+                            }
+                        ?>
+                </tbody>
+            </table>
     </div>
 
-        <table class="table table-danger">
-            <thead class="thead-light">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Login</th>
-                <th scope="col">Nadpis</th>
-                <th scope="col">Prispevok</th>
-                <th scope="col"></th>
-            </tr>
-            </thead>
-        <tbody>
-
-
-            <?php
-            $datab = new Databaza2();
-
-            $prispevky = $datab->load();
-            /** @var userPrispev $prispevok */
-
-            foreach($prispevky as $prispevok)
-            {
-                echo '
-                <tr>
-                <th scope="row"> ' . $prispevok->getId() .'</th>
-                
-                <td>
-                   <p>'. $prispevok->getLogin().
-
-                    '</p> 
-                </td>
-                
-                <td>
-                    <p>'. $prispevok->getNadpis() .
-                    '</p>
-                </td>
-                
-                <td>
-                    <p>'. $prispevok->getText() .
-                    '</p>
-                </td>
-                
-                <td>
-                <form method="post">
-                    <input type="hidden" name="id" value= '. $prispevok->getId() .' >
-                    <input class="btn btn-warning" type="submit" name="odstranPrispevok" value="Odstrániť prispevok">
-                </form>
-                </td>
-                
-                </tr>
-                ';
-
-                $x++;
-
-                /*  PRIDAT TLACITKO ZDIELAT KTORE ZVEREJNI PRISPEVOK V RECENZIACH */
-            }
-            ?>
-            </tbody>
-        </table>
-
-    </div>
 </body>
 </html>
 

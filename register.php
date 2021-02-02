@@ -13,9 +13,6 @@ if(isset($_POST['register'])) {
         $_SESSION['meno'] = $_POST['meno'];
         header("Location: user.php" );
     }
-    else{
-        echo '<script>alert("Nepodarilo sa zaregistrovať.")</script>';
-    }
 }
 
 ?>
@@ -43,30 +40,29 @@ if(isset($_POST['register'])) {
           </nav>
 
           <div  class="naStred">
-          <div class="nadpis">
-          <form class="form-signin" method="post" >
-            <img class="mb-4" width="65" height="65" src="https://cdn.onlinewebfonts.com/svg/img_532171.png" alt="">
-            <h1 class="h3 mb-3 font-weight-normal">Zadajte vaše údaje</h1>
+              <div class="nadpis">
+                  <form class="form-signin" method="post" >
+                    <img class="mb-4" width="65" height="65" src="https://cdn.onlinewebfonts.com/svg/img_532171.png" alt="">
+                    <h1 class="h3 mb-3 font-weight-normal">Zadajte vaše údaje</h1>
 
-            <label for="meno" class="sr-only">Login</label>
-            <input type="text" id="meno" name="meno" class="form-control" placeholder="Login" required autofocus>
+                    <label for="meno" class="sr-only">Login</label>
+                    <input type="text" id="meno" name="meno" class="form-control" placeholder="Login" required autofocus>
 
-            <br>
+                    <br>
 
-            <label for="inputPassword" class="sr-only">Heslo</label>
-            <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Heslo" required>
+                    <label for="inputPassword" class="sr-only">Heslo</label>
+                    <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Heslo" required>
 
-            <br>
+                    <br>
 
-            <label for="inputPasswordRep" class="sr-only">Zopakuj heslo</label>
-            <input type="password" id="inputPasswordRep" name="inputPasswordRep" class="form-control" placeholder="Zopakuj heslo" required>
-              <br>
+                    <label for="inputPasswordRep" class="sr-only">Zopakuj heslo</label>
+                    <input type="password" id="inputPasswordRep" name="inputPasswordRep" class="form-control" placeholder="Zopakuj heslo" required>
+                      <br>
+                    <button class="btn btn-block btn-warning" name="register" type="submit" >Registrácia</button>
 
-                  <button class="btn btn-block btn-warning" name="register" type="submit" >Registrácia</button>
-
-          </form>
+                  </form>
+            </div>
         </div>
-    </div>
     </body>
 </html>
 

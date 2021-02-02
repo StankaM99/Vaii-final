@@ -36,6 +36,11 @@ class Databaza
 
     public function skontrolujLogin() : bool
     {
+        if($_POST['meno'] == 'admin')
+        {
+            return false;
+        }
+
         $dbLogin = $this->database->query('SELECT login from udaje.prihludaje');
 
         foreach ($dbLogin as $login) {
@@ -52,8 +57,11 @@ class Databaza
         try {
             if($this->skontrolujLogin()) {
                 if ($udaj->skontrolujHeslo()) {
+
+                    $hashHeslo = password_hash($udaj->getHeslo(), PASSWORD_BCRYPT);
+
                     $sql = 'INSERT INTO udaje.prihludaje(login, heslo) VALUES (?,?)';
-                    $this->database->prepare($sql)->execute([$udaj->getLogin(), $udaj->getHeslo()]);
+                    $this->database->prepare($sql)->execute([$udaj->getLogin(), $hashHeslo]);
                     return true;
                 } else {
                     echo '<script>alert("Zadane hesla sa nezhoduju.")</script>';
@@ -75,8 +83,10 @@ class Databaza
         try{
             if($noveHeslo == $zopakuj)
             {
+                $hashHeslo = password_hash($noveHeslo, PASSWORD_BCRYPT);
+
                 $sql = "UPDATE udaje.prihludaje SET heslo=? WHERE login=?";
-                $this->database->prepare($sql)->execute([$noveHeslo, $zadlogin]);
+                $this->database->prepare($sql)->execute([$hashHeslo, $zadlogin]);
                 echo '<script>alert("Heslo uspesne zmenene.")</script>';
                 return true;
             } else
@@ -96,8 +106,8 @@ class Databaza
         $sql->execute([$zadlogin]);
 
         if ($data = $sql->fetch()) {
-            if ($data['heslo'] == $zadHeslo) {
-                if ($zadHeslo == $overHeslo) {
+            if ($zadHeslo == $overHeslo) {
+                if (password_verify($zadHeslo, $data['heslo'])) {
                     try {
                         $sql1 = "DELETE FROM udaje.prihludaje WHERE login=?";
                         $this->database->prepare($sql1)->execute([$zadlogin]);
@@ -107,10 +117,10 @@ class Databaza
                         return 0;
                     }
                 } else {
-                    return 2;
+                    return 3;
                 }
             } else {
-                return 3;
+                return 2;
             }
         }
         return 4;
@@ -132,11 +142,21 @@ class Databaza
 
     public function prihlas($zadlogin, $zadHeslo): int
     {
-        $sql = $this->database->prepare("SELECT * FROM udaje.prihludaje WHERE login = ?");
-        $sql->execute([$zadlogin]);
+        if($zadlogin == "admin")
+        {
+            if($zadHeslo == "admin123")
+            {
+                return 4;
+            } else {
+                return 2;
+            }
+        }
+        else{
+            $sql = $this->database->prepare("SELECT * FROM udaje.prihludaje WHERE login = ?");
+            $sql->execute([$zadlogin]);
 
             if( $data = $sql->fetch()) {
-                if ($data['login'] == $zadlogin && $data['heslo'] == $zadHeslo) {
+                if ($data['login'] == $zadlogin && password_verify($zadHeslo, $data['heslo'])) {
                     return 1;
                 } else {
                     return 2;
@@ -144,5 +164,8 @@ class Databaza
             } else{
                 return 3;
             }
+        }
+
+
     }
 }

@@ -17,11 +17,11 @@ require "db/dbRecenzie.php";
 
             <div class="odsad">
                 <div>
-                    <a class="btn btn-block btn-warning" href="signUp.php">Prihlásiť sa</a>
+                    <a class="btn btn-block btn-warning" href="../signUp.php">Prihlásiť sa</a>
                 </div>
             </div>
             <div class="odsad">
-                <a class="btn btn-block btn-warning" href="register.php">Zaregistrujte sa</a>
+                <a class="btn btn-block btn-warning" href="../register.php">Zaregistrujte sa</a>
             </div>
 
           </nav>
@@ -38,7 +38,6 @@ require "db/dbRecenzie.php";
         </div>
             <br>
 
-        <div class="bonus">
             <div class="ponuka">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
@@ -47,39 +46,8 @@ require "db/dbRecenzie.php";
                     </strong>
                 </button>
             </div>
-        </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Chcete získať tip na večerný film?</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            Máme pre Vás skvelú správu.
-                            <br>
-                            Nudíte sa doma a neviete čo by ste si mohli pozrieť?
-                            <br>
-                            Vyhľadom na pandemickú situáciu koronavírusu vo svete nám záleží na Vašom zdraví a preto sme pre vás pripravili špeciálny bonus.
-                            <br>
-                            <br>
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <a class="btn btn-lg btn-block btn-warning" href="ponuka.php">
-                            <strong>
-                                Získať tip.
-                            </strong>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
             <div class="container">
                 <div class="row">
