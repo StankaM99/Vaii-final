@@ -1,14 +1,15 @@
 <?php
 session_start();
-require "db/dbUdaje.php";
-require "db/dbPrispevok.php";
 
-$database = new Databaza();
-$datab = new Databaza2();
+require_once "db/dbUdaje.php";
+require_once "db/dbPrispevok.php";
+
+$udaje = new Databaza();
+$prispev = new Databaza2();
 
 if(isset($_POST['uprava'])) {
 
-    $pom = $database->noveHeslo($_SESSION['meno'], $_POST['password'],$_POST['password1']);
+    $pom = $udaje->noveHeslo($_SESSION['meno'], $_POST['password'],$_POST['password1']);
 
     if ($pom) {
         echo '<script>alert("Heslo uspesne zmenene.")</script>';
@@ -20,7 +21,7 @@ if(isset($_POST['uprava'])) {
 
 if(isset($_POST['odstran']))
 {
-    $pom = $database->odstranUser($_SESSION['meno'], $_POST['password'], $_POST['password1']);
+    $pom = $udaje->odstranUser($_SESSION['meno'], $_POST['password'], $_POST['password1']);
 
     if($pom == 1)
     {
@@ -42,7 +43,7 @@ if(isset($_POST['odstran']))
 
 
 if(isset($_POST['prispevok'])) {
-    $pom = $datab->save($_SESSION['meno'], $_POST['nadpis'],$_POST['text']);
+    $pom = $prispev->save($_SESSION['userId'], $_POST['nadpis'],$_POST['text']);
 
     if ($pom) {
         echo '<script>alert("Prispevok pridany")</script>';
@@ -127,33 +128,34 @@ if(isset($_POST['prispevok'])) {
 <div class="container">
     <div class="potvrd">
         <div class="row">
-            <div class="col-4">
+            <div class="card col-4">
                 <form method="post">
-                            <div class="cover">
+                            <div class="card-header cover">
                                 <label >
                                     Zmena hesla:
                                 </label>
                             </div>
-                     <input type="password" class="input-lg form-control" name="password" id="password" placeholder="nove heslo" required >
-                     <input type="password" class="input-lg form-control" name="password1" id="password1" placeholder="potvdenie hesla" required>
-                  <div class="potvrd">
-                    <input class="btn btn-warning" type="submit" name="uprava" value="Potvrdenie zmeny">
-                  </div>
+                         <input type="password" class="input-lg form-control" name="password" id="password" placeholder="nove heslo" required >
+                         <input type="password" class="input-lg form-control" name="password1" id="password1" placeholder="potvdenie hesla" required>
+                      <div class="potvrd2">
+                        <input class="btn btn-warning" type="submit" name="uprava" value="Potvrdenie zmeny">
+                      </div>
                 </form>
             </div>
 
         <div class="col-2"> </div>
 
-            <div class="col-5">
+            <div class="card col-5">
                 <form method="post">
-                    <div class="cover">
+                    <div class="card-header cover">
                             <label>
                                 Zrusenie uctu: pre odstranenie uctu prosim zadajte heslo
                             </label>
                     </div>
                                 <input type="password" class="input-lg form-control" name="password" id="password2" placeholder="heslo" required >
                                 <input type="password" class="input-lg form-control" name="password1" id="password3" placeholder="potvdenie hesla" required>
-                        <div class="potvrd">
+
+                    <div class="potvrd2">
                             <input class="btn btn-warning" type="submit" name="uprava" value="Potvrdenie zmeny">
                         </div>
                 </form>
@@ -169,6 +171,8 @@ if(isset($_POST['prispevok'])) {
                 <div class="cover">
                     <h3> Pridat prispevok</h3>
                 </div>
+
+
                     <label>Nadpis:</label><br>
                     <input type="text" id="nadpis" name="nadpis" required>
                         <br>
@@ -176,7 +180,7 @@ if(isset($_POST['prispevok'])) {
                     <textarea id="textarea" name="text" rows="6" cols="140" required>
                     </textarea>
 
-                        <div class="potvrd">
+                        <div class="potvrd2">
                             <input class="btn btn-warning" type="submit" name="prispevok" value="Pridat prispevok">
                         </div>
             </div>

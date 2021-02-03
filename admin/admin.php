@@ -53,28 +53,42 @@ if(isset($_POST['odstran'])) {
         $udaje = $database->load();
         /** @var prihlUdaje $udaj */
 
-        $x = 1;
-        foreach($udaje as $udaj)
+        if(sizeof($udaje)==0)
         {
             echo '
-                            <tr>
-                                <th scope="row"> ' . $x .'</th>
-                                
-                                <td>
-                                   <p>'. $udaj->getLogin().
-                '</p> 
-                                </td>
-                                
-                                <td>
-                                    <form method="post">
-                                        <input type="hidden" name="login1" value= '. $udaj->getLogin() .' >
-                                        <input class="btn btn-warning" type="submit" name="odstran" value="Odstrániť">
-                                    </form>
-                                </td>
-                            </tr>
-                            ';
+                        <div class="col-sm-6 my-2 naStred cover">
+                           <div class="card mx-3" >
+                                <div class="card-body ">
+                                    <h5 class="card-title">Bohuzial neboli pridane ziadne prispevky.</h5>
+                                </div>
+                           </div>
+                        </div>
+                        
+                          ';
 
-            $x++;
+        } else {
+            $x = 1;
+            foreach ($udaje as $udaj) {
+                echo '
+                                <tr>
+                                    <th scope="row"> ' . $x . '</th>
+                                    
+                                    <td>
+                                       <p>' . $udaj->getLogin() .
+                    '</p> 
+                                    </td>
+                                    
+                                    <td>
+                                        <form method="post">
+                                            <input type="hidden" name="login1" value= ' . $udaj->getLogin() . ' >
+                                            <input class="btn btn-warning" type="submit" name="odstran" value="Odstrániť">
+                                        </form>
+                                    </td>
+                                </tr>
+                                ';
+
+                $x++;
+            }
         }
         ?>
         </tbody>

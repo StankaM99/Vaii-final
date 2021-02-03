@@ -16,6 +16,8 @@ if(isset($_POST['prihlas'])) {
 
     else if ($pom == 1) {
         $_SESSION['meno'] = $_POST['meno'];
+        $_SESSION['userId'] = $database->getIdByLogin($_POST['meno']);
+
         header("Location: user.php");
     } else if($pom == 2){
         echo '<script>alert("Nepodarilo sa prihlasit. Zadane heslo nie je spravne.")</script>';

@@ -165,7 +165,25 @@ class Databaza
                 return 3;
             }
         }
-
-
     }
+
+    public function getIdByLogin($zadLogin): int
+    {
+
+        try {
+            $sql = $this->database->prepare("SELECT id FROM udaje.prihludaje WHERE login = ?");
+            $sql->execute([$zadLogin]);
+
+            $data = $sql->fetch();
+            $userId = $data['id'];
+
+            return $userId;
+
+        } catch (PDOException $e) {
+            echo 'Failed: ' . $e->getMessage();
+            return 0;
+        }
+    }
+
+
 }
