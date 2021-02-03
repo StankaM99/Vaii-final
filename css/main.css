@@ -112,11 +112,6 @@ body
     margin-left: 250px;
 }
 
-.film
-{
-    margin-left: 10%;
-    margin-right: 10%;
-}
 
 
 /*@media (max-width: 688px) {
@@ -156,4 +151,16 @@ body
         column-count: 5;
     }
 }
+
+
+
+
+div.formular {
+    display:grid;
+    grid-template-columns: max-content max-content;
+    grid-gap:10px;
+}
+
+div.formular label { text-align:right; }
+div.formular label:after { content: ":"; }
 
