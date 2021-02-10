@@ -7,7 +7,8 @@
     echo file_get_contents("head.php");
     ?>
 
-<body>
+<body onload="volanie()">
+
 <nav id="navbar" class="navbar sticky-top navbar-expand-md navbar-light mb-4" style="background-color:coral">
 
     <?php
@@ -41,27 +42,31 @@
 
 
 <div class="container">
-    <div class="row">
-        <div class="col-6">
-            <div class="tip">
-            </div>
+    <div class="row justify-content-around">
+        <div class="col-lg-6">
+                <script  src ="js/ajax.js"> </script>
+                <div id="tipFilm"></div>
     </div>
 
-        <div class="col-6">
-            <div class="tip2">
-            </div>
+        <div class="col-lg-6">
+                <script  src ="js/ajaxS.js"> </script>
+                <div id="tipSerial"></div>
         </div>
     </div>
 </div>
 
-
-<script  src ="js/ajax.js"> </script>
-<script  src ="js/ajaxS.js"> </script>
+<script>
+    function volanie()
+    {
+        dajTipFilm();
+        dajTipSerial();
+    }
+</script>
 
 
 <div class="bonus">
     <div class="cena">
-        <a class="btn btn-lg btn-block btn-warning" href="ponuka.php">
+        <a class="btn btn-lg btn-block btn-warning" onclick="volanie()">
             <strong>
                 Chcem iny tip.
             </strong>

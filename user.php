@@ -128,7 +128,7 @@ if(isset($_POST['prispevok'])) {
 <div class="container">
     <div class="potvrd">
         <div class="row">
-            <div class="card col-4">
+            <div class="card col-4 py-3">
                 <form method="post">
                             <div class="card-header cover">
                                 <label >
@@ -145,7 +145,7 @@ if(isset($_POST['prispevok'])) {
 
         <div class="col-2"> </div>
 
-            <div class="card col-5">
+            <div class="card col-5 py-3">
                 <form method="post">
                     <div class="card-header cover">
                             <label>
@@ -166,27 +166,30 @@ if(isset($_POST['prispevok'])) {
 
 <div class="container">
     <div class="potvrd">
-        <form method="post">
-            <div class="ucet">
-                <div class="cover">
-                    <h3> Pridat prispevok</h3>
+        <div class="card">
+            <form method="post">
+                    <div class="card-header cover">
+                        <h3> Pridat prispevok</h3>
+                    </div>
+
+                <div class="card-body">
+                        <label>Nadpis:</label><br>
+                        <input type="text" id="nadpis" name="nadpis" required>
+                            <br>
+                        <label>Text:</label><br>
+
+                            <textarea id="textarea" name="text" rows="6"  required>
+                            </textarea>
+
+                            <div class="potvrd2">
+                                <input class="btn btn-warning" type="submit" name="prispevok" value="Pridat prispevok">
+                            </div>
                 </div>
-
-
-                    <label>Nadpis:</label><br>
-                    <input type="text" id="nadpis" name="nadpis" required>
-                        <br>
-                    <label>Text:</label><br>
-                    <textarea id="textarea" name="text" rows="6" cols="140" required>
-                    </textarea>
-
-                        <div class="potvrd2">
-                            <input class="btn btn-warning" type="submit" name="prispevok" value="Pridat prispevok">
-                        </div>
-            </div>
         </form>
+        </div>
     </div>
 </div>
+
 </body>
 </html>
 

@@ -1,4 +1,12 @@
+<?php
+require "db/dbFilm.php";
+
+$datab = new databFilm();
+$filmy = $datab->load();
+
+?>
 <!DOCTYPE html>
+<script async src ="js/video.js"> </script>
 <html>
     <?php
         echo file_get_contents("head.php");
@@ -22,30 +30,59 @@
 
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img  class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail" src="https://2.bp.blogspot.com/-_a-2wwIKifM/WY2KITBSBQI/AAAAAAAAAQU/72EggZgYN5go7j-cKnPVs0Cpxu0U9YknQCLcBGAs/s1600/WonderWomanposter.jpg">
-                </div>
-                <div class="carousel-item">
-                    <img  class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail"  src="https://img1.looper.com/img/gallery/why-do-movie-posters-reverse-names/intro-1582575430.jpg" >
-                </div>
-                <div class="carousel-item">
-                    <img  class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail" src="https://images-na.ssl-images-amazon.com/images/I/71ZcU-iD9ZL._AC_SL1385_.jpg">
-                </div>
-                <div class="carousel-item">
-                    <img  class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail" src="https://d33wubrfki0l68.cloudfront.net/cd83fe5535b976e74bf3e3cddda88cac8758de32/036eb/media/american_hustle_poster.jpg ">
-                </div>
-                <div class="carousel-item">
-                    <img  class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail" src="https://am24.mediaite.com/tms/cnt/uploads/2020/12/Screen-Shot-2020-12-23-at-4.09.06-PM.jpg">
+                    <?php
+                        foreach($filmy as $key => $film)
+                        {
+                            if($key == 0)
+                            {
+                                echo '
+                                <div class="carousel-item active"> 
+                                    <img  alt="" class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail" data-link='.$film->getLink().' src='.$film->getObrazok().' data-name='.$film->getNazov().'>
+                                </div>
+                             ';
+
+                            } else
+                            {
+                                echo '
+                                <div class="carousel-item"> 
+                                    <img alt="" class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail" data-link='.$film->getLink().' src='.$film->getObrazok().' data-name='.$film->getNazov().'>
+                                </div>
+                             ';
+                            }
+                        }
+                    ?>
+
+            </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog mw-100 w-75" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <iframe width="100%" height="550vh" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+
+                    <div class="modal-footer">
+                    </div>
+
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
         </div>
+
     </body>
 </html>

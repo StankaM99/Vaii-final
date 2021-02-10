@@ -1,5 +1,4 @@
 <?php
-include_once 'dbSerial.php';
 
 class prihlasovacieUdaje
 {
