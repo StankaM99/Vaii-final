@@ -16,6 +16,8 @@ if(isset($_POST['prihlas'])) {
 
     else if ($pom == 1) {
         $_SESSION['meno'] = $_POST['meno'];
+        $_SESSION['loggedin'] = true;
+
         $_SESSION['userId'] = $database->getIdByLogin($_POST['meno']);
 
         header("Location: user.php");

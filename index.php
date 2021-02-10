@@ -1,4 +1,14 @@
 <?php
+
+session_start();
+
+$_SESSION['loggedin'];
+
+if(!$_SESSION['loggedin'])
+{
+    $_SESSION['loggedin'] = false;
+}
+
 require "db/dbFilm.php";
 
 $datab = new databFilm();
@@ -6,26 +16,53 @@ $filmy = $datab->load();
 
 ?>
 <!DOCTYPE html>
-<script async src ="js/video.js"> </script>
+
 <html>
+
     <?php
         echo file_get_contents("head.php");
     ?>
 
     <body>
+
+        <script async src ="js/video.js"> </script>
+
         <nav id="navbar" class="navbar sticky-top navbar-expand-md navbar-light mb-7" style="background-color:coral">
 
         <?php
             echo file_get_contents("navbar.php");
         ?>
-            <div class="odsad">
-                <div>
-                    <a class="btn btn-block btn-warning" href="signUp.php">Prihlásiť sa</a>
-                </div>
-            </div>
-            <div class="odsad">
-                <a class="btn btn-block btn-warning" href="register.php">Zaregistrujte sa</a>
-            </div>
+
+        <?php
+            if(!$_SESSION['loggedin'])
+            {
+                echo '
+                     <div class="odsad">
+                        <div>
+                            <a class="btn btn-block btn-warning" href="signUp.php">Prihlásiť sa</a>
+                        </div>
+                    </div>
+                    
+                    <div class="odsad">
+                        <a class="btn btn-block btn-warning" href="register.php">Zaregistrujte sa</a>
+                    </div>
+                ';
+            } else
+            {
+                echo '
+                     <div class="odsad">
+                        <div>
+                            <a class="btn btn-block btn-warning" href="user.php">Konto</a>
+                        </div>
+                    </div>
+                    
+                    <div class="odsad">
+                        <a class="btn btn-block btn-warning" href="odhlasenie.php">Odhlasit sa</a>
+                    </div>
+                ';
+            }
+        ?>
+
           </nav>
 
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -37,7 +74,7 @@ $filmy = $datab->load();
                             {
                                 echo '
                                 <div class="carousel-item active"> 
-                                    <img  alt="" class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail" data-link='.$film->getLink().' src='.$film->getObrazok().' data-name='.$film->getNazov().'>
+                                    <img  alt=" " class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail" data-link='.$film->getLink().' src='.$film->getObrazok().' data-name='.$film->getNazov().'>
                                 </div>
                              ';
 
@@ -45,7 +82,7 @@ $filmy = $datab->load();
                             {
                                 echo '
                                 <div class="carousel-item"> 
-                                    <img alt="" class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail" data-link='.$film->getLink().' src='.$film->getObrazok().' data-name='.$film->getNazov().'>
+                                    <img alt=" " class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail" data-link='.$film->getLink().' src='.$film->getObrazok().' data-name='.$film->getNazov().'>
                                 </div>
                              ';
                             }
@@ -79,7 +116,6 @@ $filmy = $datab->load();
 
                     <div class="modal-footer">
                     </div>
-
                 </div>
             </div>
         </div>

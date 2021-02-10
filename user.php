@@ -77,7 +77,7 @@ if(isset($_POST['prispevok'])) {
     </div>
 
     <div class="odsad">
-        <a class="btn btn-block btn-warning" href="signUp.php">Odhlasenie</a>
+        <a class="btn btn-block btn-warning" href="odhlasenie.php">Odhlasit sa</a>
     </div>
 
 </nav>
