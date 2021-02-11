@@ -1,7 +1,7 @@
 <?php
 
-include_once 'userPrispev.php';
-include_once 'dbUdaje.php';
+include $_SERVER['DOCUMENT_ROOT'].'\Vaii-final\db\userPrispev.php';
+require_once'dbUdaje.php';
 
 class Databaza2
 {

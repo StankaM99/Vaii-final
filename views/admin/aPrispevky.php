@@ -1,6 +1,6 @@
 <?php
-require "../db/dbPrispevok.php";
-require_once "../alert.php";
+require "../../db/pracaSdb/dbPrispevok.php";
+require_once "../komponenty/alert.php";
 
 $datab = new Databaza2();
 
@@ -24,7 +24,7 @@ if(isset($_POST['odstranPrispevok']))
 <html>
 
     <?php
-    echo file_get_contents("../head.php");
+    echo file_get_contents("../komponenty/head.php");
     ?>
 
 
@@ -33,7 +33,7 @@ if(isset($_POST['odstranPrispevok']))
 
 
     <?php
-    echo file_get_contents("navbarAdmin.php");
+    echo file_get_contents("../komponenty/navbarAdmin.php");
     ?>
 
 </nav>
@@ -41,7 +41,7 @@ if(isset($_POST['odstranPrispevok']))
 
 <div class="container">
     <div class="cover">
-        <h3>Prispevky od pouzivatelov</h3>
+        <h3>Recenzie od pouzivatelov</h3>
         <br>
     </div>
 
@@ -52,7 +52,7 @@ if(isset($_POST['odstranPrispevok']))
                 <th scope="col">ID</th>
                 <th scope="col">Login</th>
                 <th scope="col">Nadpis</th>
-                <th scope="col">Prispevok</th>
+                <th scope="col">Recenzia</th>
                 <th scope="col"></th>
             </tr>
             </thead>

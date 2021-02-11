@@ -1,6 +1,6 @@
 <?php
 
-include_once 'dbSerial.php';
+include_once 'pracaSdb/dbSerial.php';
 
 class tipSerial
 {

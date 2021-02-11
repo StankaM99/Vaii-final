@@ -1,5 +1,5 @@
 <?php
-include 'prihlUdaje.php';
+include $_SERVER['DOCUMENT_ROOT'].'\Vaii-final\db\prihlUdaje.php';
 
 class Databaza
 {

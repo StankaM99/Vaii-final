@@ -1,5 +1,5 @@
 <?php
-include_once 'dbPrispevok.php';
+require_once('pracaSdb/dbPrispevok.php');
 
 class userPrispev
 {

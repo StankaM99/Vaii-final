@@ -1,5 +1,6 @@
 <?php
-include 'film.php';
+
+include $_SERVER['DOCUMENT_ROOT'].'\Vaii-final\db\film.php';
 
 class databFilm
 {

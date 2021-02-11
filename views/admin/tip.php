@@ -1,8 +1,8 @@
 <?php
 
-require "../db/dbFilm.php";
-require "../db/dbSerial.php";
-require_once "../alert.php";
+require "../../db/pracaSdb/dbFilm.php";
+require "../../db/pracaSdb/dbSerial.php";
+require_once "../komponenty/alert.php";
 
 $film = new databFilm();
 $serial = new databSerial();
@@ -45,14 +45,14 @@ if(isset($_POST['serial']))
 <!DOCTYPE html>
 <html>
     <?php
-    echo file_get_contents("../head.php");
+    echo file_get_contents("../komponenty/head.php");
     ?>
 
 <body>
 <nav id="navbar" class="navbar sticky-top navbar-expand-md navbar-light mb-4" style="background-color:coral;">
 
     <?php
-    echo file_get_contents("navbarAdmin.php");
+    echo file_get_contents("../komponenty/navbarAdmin.php");
     ?>
 </nav>
 

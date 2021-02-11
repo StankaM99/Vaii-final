@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-require_once "db/dbUdaje.php";
-require_once "db/dbPrispevok.php";
-require_once "alert.php";
+require_once "../db/pracaSdb/dbUdaje.php";
+require_once "../db/pracaSdb/dbPrispevok.php";
+require_once "komponenty/alert.php";
 
 $udaje = new Databaza();
 $prispev = new Databaza2();
@@ -56,13 +56,13 @@ if(isset($_POST['prispevok'])) {
 <!DOCTYPE html>
 <html>
     <?php
-        echo file_get_contents("head.php");
+        echo file_get_contents("komponenty/head.php");
     ?>
 <body>
 <nav id="navbar" class="navbar sticky-top navbar-expand-md navbar-light mb-4" style="background-color:coral;">
 
     <?php
-        echo file_get_contents("navbar.php");
+        echo file_get_contents("komponenty/navbar.php");
     ?>
 
     <div class="odsad">
@@ -102,7 +102,7 @@ if(isset($_POST['prispevok'])) {
                 </p>
             </div>
             <div class="modal-footer">
-                <a class="btn btn-lg btn-block btn-warning" href="ponuka.php">
+                <a class="btn btn-lg btn-block btn-warning" href="views/ponuka.php">
                     <strong>
                         Získať tip.
                     </strong>

@@ -1,5 +1,5 @@
 <?php
-require "db/dbPrispevok.php";
+require "../db/pracaSdb/dbPrispevok.php";
 
 session_start();
 
@@ -8,14 +8,14 @@ session_start();
 <!DOCTYPE html>
 <html>
     <?php
-    echo file_get_contents("head.php");
+    echo file_get_contents("komponenty/head.php");
     ?>
 
 <body>
 <nav id="navbar" class="navbar sticky-top navbar-expand-md navbar-light mb-4" style="background-color:coral;">
 
     <?php
-        echo file_get_contents("navbar.php");
+        echo file_get_contents("komponenty/navbar.php");
     ?>
 
     <?php
@@ -24,12 +24,12 @@ session_start();
             echo '
                          <div class="odsad">
                             <div>
-                                <a class="btn btn-block btn-warning" href="signUp.php">Prihlásiť sa</a>
+                                <a class="btn btn-block btn-warning" href="views/signUp.php">Prihlásiť sa</a>
                             </div>
                         </div>
                         
                         <div class="odsad">
-                            <a class="btn btn-block btn-warning" href="register.php">Zaregistrujte sa</a>
+                            <a class="btn btn-block btn-warning" href="views/register.php">Zaregistrujte sa</a>
                         </div>
                     ';
         } else
@@ -37,7 +37,7 @@ session_start();
             echo '
                          <div class="odsad">
                             <div>
-                                <a class="btn btn-block btn-warning" href="user.php">Konto</a>
+                                <a class="btn btn-block btn-warning" href="views/user.php">Konto</a>
                             </div>
                         </div>
                         
@@ -52,7 +52,7 @@ session_start();
 <div class="potvrd2">
 <div class="uprava2">
     <div class="cover">
-    <h2 class="border-bottom pb-2 mb-1">Prispevky od pouzivatelov</h2>
+    <h2 class="border-bottom pb-2 mb-1">Recenzie od pouzivatelov</h2>
     </div>
 
 

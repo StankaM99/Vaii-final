@@ -1,6 +1,7 @@
 <?php
 
-include_once 'dbFilm.php';
+//include_once('db/pracaSdb/dbFilm.php');
+
 
 class tipFilm
 {

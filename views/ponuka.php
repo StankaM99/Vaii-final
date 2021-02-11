@@ -6,7 +6,7 @@ session_start();
 <!DOCTYPE html>
 <html>
     <?php
-    echo file_get_contents("head.php");
+    echo file_get_contents("komponenty/head.php");
     ?>
 
 <body onload="volanie()">
@@ -14,7 +14,7 @@ session_start();
 <nav id="navbar" class="navbar sticky-top navbar-expand-md navbar-light mb-4" style="background-color:coral">
 
     <?php
-    echo file_get_contents("navbar.php");
+    echo file_get_contents("komponenty/navbar.php");
     ?>
 
     <?php
@@ -36,7 +36,7 @@ session_start();
         echo '
                      <div class="odsad">
                         <div>
-                            <a class="btn btn-block btn-warning" href="user.php">Konto</a>
+                            <a class="btn btn-block btn-warning" href="views/user.php">Konto</a>
                         </div>
                     </div>
                     

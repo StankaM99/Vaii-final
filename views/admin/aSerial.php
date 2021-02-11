@@ -1,20 +1,20 @@
 <?php
-require "../db/dbFilm.php";
-require_once "../alert.php";
+require "../../db/pracaSdb/dbSerial.php";
+require_once "../komponenty/alert.php";
 
 
-$film = new databFilm();
+$serial = new databSerial();
 
 if(isset($_POST['odstran']))
 {
-    $pom = $film->odstran($_POST['id']);
+    $pom = $serial->odstran($_POST['id']);
 
-    if($pom == 1)
+    if($pom)
     {
-        echo alert("warning", "Film bol uspesne odstraneny.");
+        echo alert("warning", "Serial bol uspesne odstraneny.");
     }
     else{
-        echo alert("danger", "Film sa nepodarilo odstranit.");
+        echo alert("danger", "Serial sa nepodarilo ostranit.");
     }
 }
 
@@ -24,15 +24,14 @@ if(isset($_POST['odstran']))
 <html>
 
     <?php
-    echo file_get_contents("../head.php");
+    echo file_get_contents("../komponenty/head.php");
     ?>
 
 
 <body>
 <nav id="navbar" class="navbar sticky-top navbar-expand-md navbar-light mb-4" style="background-color:coral;">
-
     <?php
-    echo file_get_contents("navbarAdmin.php");
+    echo file_get_contents("../komponenty/navbarAdmin.php");
     ?>
 
 </nav>
@@ -40,7 +39,7 @@ if(isset($_POST['odstran']))
 <div class="register">
 
     <div class="cover">
-        <h3>Filmova databaza</h3>
+        <h3>Serialova databaza</h3>
         <br>
     </div>
 
@@ -48,7 +47,7 @@ if(isset($_POST['odstran']))
         <thead class="thead-light">
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Nazov filmu</th>
+            <th scope="col">Nazov serialu</th>
             <th scope="col"></th>
         </tr>
         </thead>
@@ -57,10 +56,10 @@ if(isset($_POST['odstran']))
 
         <?php
 
-        $filmyD = $film->load();
+        $serialyD = $serial->load();
 
         $x = 1;
-        foreach($filmyD as $udaj)
+        foreach($serialyD as $udaj)
         {
             echo '
                             <tr>
@@ -68,7 +67,7 @@ if(isset($_POST['odstran']))
                                 
                                 <td>
                                    <p>'. $udaj->getNazov().
-                                   '</p> 
+                '</p> 
                                 </td>
                                 <td>
                                     <form method="post">
@@ -85,6 +84,7 @@ if(isset($_POST['odstran']))
         </tbody>
     </table>
 </div>
+
 </body>
 </html>
 

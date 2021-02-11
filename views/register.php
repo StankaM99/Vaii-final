@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require "db/dbUdaje.php";
-require_once "alert.php";
+require "../db/pracaSdb/dbUdaje.php";
+require_once "komponenty/alert.php";
 
 $database = new Databaza();
 
@@ -14,6 +14,8 @@ if(isset($_POST['register'])) {
     {
         $_SESSION['meno'] = $_POST['meno'];
         $_SESSION['prihlaseny'] = true;
+
+        $_SESSION['userId'] = $database->getIdByLogin($_POST['meno']);
 
         header("Location: user.php" );
     } else if ($pom == 2)
@@ -34,19 +36,19 @@ if(isset($_POST['register'])) {
 <html>
 
     <?php
-        echo file_get_contents("head.php");
+        echo file_get_contents("komponenty/head.php");
     ?>
 
     <body>
         <nav id="navbar" class="navbar sticky-top navbar-expand-md navbar-light mb-4" style="background-color:coral;">
 
             <?php
-                echo file_get_contents("navbar.php");
+                echo file_get_contents("komponenty/navbar.php");
             ?>
 
             <div class="odsad">
                 <div>
-                    <a class="btn btn-block btn-warning" href="signUp.php">Prihlásiť sa</a>
+                    <a class="btn btn-block btn-warning" href="views/signUp.php">Prihlásiť sa</a>
                 </div>
             </div>
 

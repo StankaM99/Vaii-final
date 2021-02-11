@@ -10,11 +10,11 @@
     <ul class="navbar-nav mr-auto">
 
         <li class="nav-item ">
-            <a id="Home" class="nav-link" href="index.php">Home</a>
+            <a id="Home" class="nav-link" href="http://localhost/Vaii-final/index.php">Home</a>
         </li>
 
         <li class="nav-item ">
-            <a id="Prisp" class="nav-link " href="prispevky.php">Prispevky</a>
+            <a id="Prisp" class="nav-link " href="http://localhost/Vaii-final/views/prispevky.php">Recenzie</a>
         </li>
     </ul>
 </div>

@@ -2,8 +2,8 @@
 
 session_start();
 
-require "db/dbUdaje.php";
-require_once "alert.php";
+require "../db/pracaSdb/dbUdaje.php";
+require_once "komponenty/alert.php";
 
 $database = new Databaza();
 
@@ -37,18 +37,18 @@ if(isset($_POST['prihlas'])) {
 <!DOCTYPE html>
 <html>
     <?php
-        echo file_get_contents("head.php");
+        echo file_get_contents("komponenty/head.php");
     ?>
 
     <body>
         <nav id="navbar" class="navbar sticky-top navbar-expand-md navbar-light mb-4" style="background-color:coral;">
 
             <?php
-                echo file_get_contents("navbar.php");
+                echo file_get_contents("komponenty/navbar.php");
             ?>
 
             <div class="odsad">
-                <a class="btn btn-block btn-warning" href="register.php">Zaregistrujte sa</a>
+                <a class="btn btn-block btn-warning" href="views/register.php">Zaregistrujte sa</a>
             </div>
 
         </nav>

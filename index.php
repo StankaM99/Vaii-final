@@ -9,7 +9,7 @@ if($_SESSION['prihlaseny'] != true )
     $_SESSION['prihlaseny'] = false;
 }
 
-require "db/dbFilm.php";
+require_once ("db/pracaSdb/dbFilm.php");
 
 $datab = new databFilm();
 $filmy = $datab->load();
@@ -20,7 +20,7 @@ $filmy = $datab->load();
 <html>
 
     <?php
-        echo file_get_contents("head.php");
+        echo file_get_contents("views/komponenty/head.php");
     ?>
 
     <body>
@@ -30,7 +30,7 @@ $filmy = $datab->load();
         <nav id="navbar" class="navbar sticky-top navbar-expand-md navbar-light mb-7" style="background-color:coral">
 
         <?php
-            echo file_get_contents("navbar.php");
+            echo file_get_contents("views/komponenty/navbar.php");
         ?>
 
         <?php
@@ -39,12 +39,12 @@ $filmy = $datab->load();
                 echo '
                      <div class="odsad">
                         <div>
-                            <a class="btn btn-block btn-warning" href="signUp.php">Prihlásiť sa</a>
+                            <a class="btn btn-block btn-warning" href="http://localhost/Vaii-final/views/signUp.php">Prihlásiť sa</a>
                         </div>
                     </div>
                     
                     <div class="odsad">
-                        <a class="btn btn-block btn-warning" href="register.php">Zaregistrujte sa</a>
+                        <a class="btn btn-block btn-warning" href="http://localhost/Vaii-final/views/register.php">Zaregistrujte sa</a>
                     </div>
                 ';
             } else
@@ -52,12 +52,12 @@ $filmy = $datab->load();
                 echo '
                      <div class="odsad">
                         <div>
-                            <a class="btn btn-block btn-warning" href="user.php">Konto</a>
+                            <a class="btn btn-block btn-warning" href="http://localhost/Vaii-final/views/user.php">Konto</a>
                         </div>
                     </div>
                     
                     <div class="odsad">
-                        <a class="btn btn-block btn-warning" href="odhlasenie.php">Odhlasit sa</a>
+                        <a class="btn btn-block btn-warning" href="http://localhost/Vaii-final/odhlasenie.php">Odhlasit sa</a>
                     </div>
                 ';
             }
