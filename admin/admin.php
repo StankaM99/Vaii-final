@@ -48,6 +48,7 @@ if(isset($_POST['odstran'])) {
 
         <tbody>
 
+
         <?php
         $database = new Databaza();
 

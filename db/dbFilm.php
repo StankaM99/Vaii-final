@@ -35,7 +35,7 @@ class databFilm
 
     public function save($zadNazov, $zadRok, $zadZaner, $zadHod, $zadObrazok, $zadLink): int
     {
-        if($this->skonLink($zadLink))
+        if($this->skonLink($zadLink) && $this->skonObr($zadObrazok))
         {
             $novyLink = $this->konvLink($zadLink);
 
@@ -75,6 +75,11 @@ class databFilm
     private function konvLink($zadLink): string
     {
         return str_replace("watch?v=", "embed/", $zadLink);
+    }
+
+    private function skonObr($zadLinkO):bool
+    {
+        return strpos($zadLinkO,".jpg") !== false || strpos($zadLinkO,".png") !== false;
     }
 
 }

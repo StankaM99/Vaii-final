@@ -34,40 +34,24 @@ class databSerial
         return $serialy;
     }
 
-    public function save($zadNazov, $zadZaner, $zadHod, $zadObrazok) : bool
+    public function save($zadNazov, $zadZaner, $zadHod, $zadObrazok) : int
     {
-        try {
-            $sql = 'INSERT INTO udaje.serialy(nazov, zaner, hodnotenie, obrazok) VALUES (?,?,?,?)';
-            $this->serial->prepare($sql)->execute([$zadNazov, $zadZaner, $zadHod, $zadObrazok]);
-            return true;
-        } catch (PDOException $e)
+        if($this->skonObr($zadObrazok))
         {
-            echo 'Connection failed: ' . $e->getMessage();
-            return false;
-        }
-    }
-
-    /*public function novyOrbarok($zadfilm, $novyObrazok): bool
-    {
-        try{
-            if($noveHeslo == $zopakuj)
+            try {
+                $sql = 'INSERT INTO udaje.serialy(nazov, zaner, hodnotenie, obrazok) VALUES (?,?,?,?)';
+                $this->serial->prepare($sql)->execute([$zadNazov, $zadZaner, $zadHod, $zadObrazok]);
+                return 1;
+            } catch (PDOException $e)
             {
-                $hashHeslo = password_hash($noveHeslo, PASSWORD_BCRYPT);
-
-                $sql = "UPDATE udaje.prihludaje SET heslo=? WHERE login=?";
-                $this->database->prepare($sql)->execute([$hashHeslo, $zadlogin]);
-                echo '<script>alert("Heslo uspesne zmenene.")</script>';
-                return true;
-            } else
-            {
-                return false;
+                echo 'Connection failed: ' . $e->getMessage();
+                return 2;
             }
-
-        } catch (PDOException $e) {
-            echo 'Failed: ' . $e->getMessage();
-            return false;
+        } else {
+            return 3;
         }
-    }*/
+
+    }
 
     public function odstran($id): int
     {
@@ -80,6 +64,11 @@ class databSerial
             echo 'Failed: ' . $e->getMessage();
             return 0;
         }
+    }
+
+    private function skonObr($zadLink):bool
+    {
+        return strpos($zadLink,".jpg") !== false || strpos($zadLink,".png") !== false;
     }
 
 }

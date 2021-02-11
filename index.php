@@ -74,7 +74,7 @@ $filmy = $datab->load();
                             {
                                 echo '
                                 <div class="carousel-item active"> 
-                                    <img  alt=" " class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail" data-link='.$film->getLink().' src='.$film->getObrazok().' data-name='.'"'.$film->getNazov().'"'.'>
+                                    <img  alt=" " class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail" data-link='.'"'.$film->getLink().'"'.' src='.'"'.$film->getObrazok().'"'.' data-name='.'"'.$film->getNazov().'"'.'>
                                 </div>
                              ';
 
@@ -82,7 +82,7 @@ $filmy = $datab->load();
                             {
                                 echo '
                                 <div class="carousel-item"> 
-                                    <img alt=" " class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail" data-link='.$film->getLink().' src='.$film->getObrazok().' data-name='.'"'.$film->getNazov().'"'.'>
+                                    <img alt=" " class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail" data-link='.'"'.$film->getLink().'"'.' src='.'"'.$film->getObrazok().'"'.' data-name='.'"'.$film->getNazov().'"'.'>
                                 </div>
                              ';
                             }
@@ -105,13 +105,13 @@ $filmy = $datab->load();
             <div class="modal-dialog mw-100 w-75" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Trailer</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <iframe width="100%" height="550vh" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe class="w-100" height="550" src="https://www.youtube.com/watch?v=v-xh_gq8sbk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
 
                     <div class="modal-footer">

@@ -20,20 +20,23 @@ if(isset($_POST['film']))
         echo alert("danger", "Tip na film sa nepodarilo pridat.");
     } else
     {
-        echo alert("danger", "Nespravne zadany link na trailer.");
+        echo alert("danger", "Nespravne zadany link na trailer alebo obrazok.");
     }
 }
 
 if(isset($_POST['serial']))
 {
-    $pom = $serial->save($_POST['nazov'],$_POST['zanerS'], $_POST['hodnotenieS'], $_POST['linkS']);
+    $pom = $serial->save($_POST['nazovS'],$_POST['zanerS'], $_POST['hodnotenieS'], $_POST['linkS']);
 
-    if($pom)
+    if($pom==1)
     {
         echo alert("warning", "Tip na serial bol uspesne pridany.");
     }
-    else{
+    else if ($pom == 2){
         echo alert("danger", "Tip na serial sa nepodarilo pridat.");
+    } else
+    {
+        echo alert("danger", "Nespravne zadany link na obrazok.");
     }
 }
 ?>
@@ -69,31 +72,29 @@ if(isset($_POST['serial']))
                         <label for="nadpis">Nazov filmu</label>
                         <input type="text" id="nadpis" name="nadpis" required>
 
-                        <label for="nadpis">Rok vydania</label>
+                        <label for="rok">Rok vydania</label>
                         <input  type="number" id="rok" name="rok" max="2021" min="1900"  required>
 
-                        <label for="nadpis">Zaner</label>
-                        <input type="text" id="rezia" name="zaner" required>
+                        <label for="zaner">Zaner</label>
+                        <input type="text" id="zaner" name="zaner" required>
 
-                        <label for="textarea">Hodnotenie</label>
-                        <input type="number" id="hodnot" name="hodnotenie">
+                        <label for="hodnotenie">Hodnotenie</label>
+                        <input type="number" id="hodnotenie" name="hodnotenie">
                     </div>
 
-                    <label for="basic-url" class="form-label">Link na obrazok:</label>
+                    <label for="obrazok-url" class="form-label">Link na obrazok:</label>
                     <div class="input-group mb-3">
-                        <input type="url" class="form-control" name="link" id="basic-url" aria-describedby="basic-addon3">
+                        <input type="url" class="form-control" name="link" id="obrazok-url">
                     </div>
 
                     <br>
 
-                    <label for="basic-url" class="form-label">Link na trailer:</label>
+                    <label for="trailer-url" class="form-label">Link na trailer:</label>
                     <div class="input-group mb-3">
-                        <input type="url" class="form-control" name="link2" id="basic-url" aria-describedby="basic-addon3">
+                        <input type="url" class="form-control" name="link2" id="trailer-url">
                     </div>
 
-                    <form method="post">
                         <input class="btn btn-warning" type="submit" name="film" value="Pridat film">
-                    </form>
                 </div>
             </form>
         </div>
@@ -108,14 +109,14 @@ if(isset($_POST['serial']))
             <form method="post">
                 <div class="card-body">
                     <div class="formular mb-4 justify-content-center">
-                        <label for="nadpis">Nazov serialu</label>
-                        <input type="text" id="nadpis" name="nazov" required>
+                        <label for="nadpisS">Nazov serialu</label>
+                        <input type="text" id="nadpisS" name="nadpisS" required>
 
-                        <label for="nadpis">Zaner</label>
-                        <input type="text" id="rezia" name="zanerS" required>
+                        <label for="zanerS">Zaner</label>
+                        <input type="text" id="zanerS" name="zanerS" required>
 
-                        <label for="textarea">Hodnotenie</label>
-                        <input type="number" id="hodnot" name="hodnotenieS">
+                        <label for="hodnotenieS">Hodnotenie</label>
+                        <input type="number" id="hodnotenieS" name="hodnotenieS">
 
                         <br>
                         <br>
@@ -125,7 +126,7 @@ if(isset($_POST['serial']))
 
                         <label for="basic-url" class="form-label">Link na obrazok:</label>
                         <div class="input-group mb-3">
-                            <input type="url" class="form-control" name="linkS" id="basic-url" aria-describedby="basic-addon3">
+                            <input type="url" class="form-control" name="linkS" id="basic-url">
                         </div>
 
                     <br>
@@ -133,11 +134,7 @@ if(isset($_POST['serial']))
 
                     <br>
                     <br>
-
-                        <form method="post">
                             <input class="btn btn-warning" type="submit" name="serial" value="Pridat serial">
-                        </form>
-
 
                 </div>
             </form>

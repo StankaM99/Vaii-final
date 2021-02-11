@@ -10,7 +10,7 @@
     <ul class="navbar-nav mr-auto">
 
         <li class="nav-item ">
-            <a id="Home" class="nav-link" href="admin/admin.php">Pouzivatelia</a>
+            <a  class="nav-link" href="admin/admin.php">Pouzivatelia</a>
         </li>
 
         <!--
@@ -19,19 +19,19 @@
         </li> -->
 
         <li class="nav-item ">
-            <a id="Prisp" class="nav-link " href="admin/aPrispevky.php">Prispevky</a>
+            <a  class="nav-link " href="admin/aPrispevky.php">Prispevky</a>
         </li>
 
         <li class="nav-item ">
-            <a id="Prisp" class="nav-link " href="admin/tip.php">Pridat tip</a>
+            <a  class="nav-link " href="admin/tip.php">Pridat tip</a>
         </li>
 
         <li class="nav-item ">
-            <a id="Prisp" class="nav-link " href="admin/aFilm.php">Filmy</a>
+            <a  class="nav-link " href="admin/aFilm.php">Filmy</a>
         </li>
 
         <li class="nav-item ">
-            <a id="Prisp" class="nav-link " href="admin/aSerial.php">Serialy</a>
+            <a class="nav-link " href="admin/aSerial.php">Serialy</a>
         </li>
 
     </ul>
