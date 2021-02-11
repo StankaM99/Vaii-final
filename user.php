@@ -3,6 +3,7 @@ session_start();
 
 require_once "db/dbUdaje.php";
 require_once "db/dbPrispevok.php";
+require_once "alert.php";
 
 $udaje = new Databaza();
 $prispev = new Databaza2();
@@ -12,9 +13,9 @@ if(isset($_POST['uprava'])) {
     $pom = $udaje->noveHeslo($_SESSION['meno'], $_POST['password'],$_POST['password1']);
 
     if ($pom) {
-        echo '<script>alert("Heslo uspesne zmenene.")</script>';
+        echo alert("warning", "Podarilo sa zmenit heslo.");
     } else {
-        echo '<script>alert("Nepodarilo sa zmeniť heslo.")</script>';
+        echo alert("danger", "Neodarilo sa zmenit heslo.");
     }
 }
 
@@ -28,16 +29,15 @@ if(isset($_POST['odstran']))
         header("Location: register.php");
     }
     else if($pom == 2){
-        echo '<script>alert("Zadane hesla sa nezhoduju.")</script>';
+        echo alert("danger", "Zadane hesla sa nezhoduju.");
+
     } else if($pom == 3)
     {
-        echo '<script>alert("Zadali ste nespravne heslo.")</script>';
-    } else if($pom == 4)
-    {
-        echo '<script>alert("Nastala chyba.")</script>';
+        echo alert("danger", "Zadali ste nespravne heslo.");
+
     } else
     {
-        echo '<script>alert("Chyba.")</script>';
+        echo alert("danger", "Nastala chyba.");
     }
 }
 
@@ -46,9 +46,9 @@ if(isset($_POST['prispevok'])) {
     $pom = $prispev->save($_SESSION['userId'], $_POST['nadpis'],$_POST['text']);
 
     if ($pom) {
-        echo '<script>alert("Prispevok pridany")</script>';
+        echo alert("warning", "Prispevok bol pridany.");
     } else {
-        echo '<script>alert("Nepodarilo sa pridat prispevok.")</script>';
+        echo alert("danger", "Nepodarilo sa pridat prispevok.");
     }
 }
 ?>
@@ -66,14 +66,12 @@ if(isset($_POST['prispevok'])) {
     ?>
 
     <div class="odsad">
-        <div class="ponuka">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
                 <strong>
                     Špeciálna ponuka
                 </strong>
             </button>
-        </div>
     </div>
 
     <div class="odsad">
@@ -125,67 +123,70 @@ if(isset($_POST['prispevok'])) {
     </div>
 </div>
 
-<div class="container">
-    <div class="potvrd">
-        <div class="row">
-            <div class="card col-4 py-3">
-                <form method="post">
-                            <div class="card-header cover">
-                                <label >
-                                    Zmena hesla:
-                                </label>
-                            </div>
-                         <input type="password" class="input-lg form-control" name="password" id="password" placeholder="nove heslo" required >
-                         <input type="password" class="input-lg form-control" name="password1" id="password1" placeholder="potvdenie hesla" required>
-                      <div class="potvrd2">
-                        <input class="btn btn-warning" type="submit" name="uprava" value="Potvrdenie zmeny">
-                      </div>
-                </form>
-            </div>
-
-        <div class="col-2"> </div>
-
-            <div class="card col-5 py-3">
-                <form method="post">
-                    <div class="card-header cover">
-                            <label>
-                                Zrusenie uctu: pre odstranenie uctu prosim zadajte heslo
-                            </label>
-                    </div>
-                                <input type="password" class="input-lg form-control" name="password" id="password2" placeholder="heslo" required >
-                                <input type="password" class="input-lg form-control" name="password1" id="password3" placeholder="potvdenie hesla" required>
-
-                    <div class="potvrd2">
+<div class="container-fluid justify-content-center odsad2">
+    <div class="container">
+        <div class="potvrd">
+            <div class="row">
+                <div class="card col-5 py-3">
+                    <form method="post">
+                                <div class="card-header cover">
+                                    <label >
+                                        Zmena hesla:
+                                    </label>
+                                </div>
+                             <input type="password" class="input-lg form-control" name="password" id="password" placeholder="nove heslo" required >
+                             <input type="password" class="input-lg form-control" name="password1" id="password1" placeholder="potvdenie hesla" required>
+                          <div class="potvrd2">
                             <input class="btn btn-warning" type="submit" name="uprava" value="Potvrdenie zmeny">
+                          </div>
+                    </form>
+                </div>
+
+            <div class="col-1"> </div>
+
+                <div class="card col-5 py-3">
+                    <form method="post">
+                        <div class="card-header cover">
+                                <label>
+                                    Zrusenie uctu: pre odstranenie uctu prosim zadajte heslo
+                                </label>
                         </div>
-                </form>
+                                    <input type="password" class="input-lg form-control" name="password" id="password2" placeholder="heslo" required >
+                                    <input type="password" class="input-lg form-control" name="password1" id="password3" placeholder="potvdenie hesla" required>
+
+                        <div class="potvrd2">
+                                <input class="btn btn-warning" type="submit" name="uprava" value="Potvrdenie zmeny">
+                            </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="container">
-    <div class="potvrd">
-        <div class="card">
-            <form method="post">
-                    <div class="card-header cover">
-                        <h3> Pridat prispevok</h3>
-                    </div>
-
-                <div class="card-body">
-                        <label>Nadpis:</label><br>
-                        <input type="text" id="nadpis" name="nadpis" required>
-                            <br>
-                        <label>Text:</label><br>
-
-                            <textarea id="textarea" name="text" rows="6"  required>
-                            </textarea>
-
-                            <div class="potvrd2">
-                                <input class="btn btn-warning" type="submit" name="prispevok" value="Pridat prispevok">
+    <div class="container">
+        <div class="potvrd">
+            <div class="row">
+                <div class="card col-11 mb-3">
+                    <form method="post">
+                            <div class="card-header cover">
+                                <h3> Pridat recenziu</h3>
                             </div>
+
+                        <div class="card-body">
+                                <label>Nadpis:</label><br>
+                                <input type="text" id="nadpis" name="nadpis" required>
+                                    <br>
+                                <label>Text:</label><br>
+
+                                    <textarea id="textarea" name="text" rows="6"  required></textarea>
+
+                                    <div class="potvrd2">
+                                        <input class="btn btn-warning" type="submit" name="prispevok" value="Pridat prispevok">
+                                    </div>
+                        </div>
+                    </form>
                 </div>
-        </form>
+            </div>
         </div>
     </div>
 </div>

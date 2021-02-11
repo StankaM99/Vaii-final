@@ -1,5 +1,6 @@
 <?php
 require "../db/dbUdaje.php";
+require_once "../alert.php";
 
 $database = new Databaza();
 
@@ -7,9 +8,9 @@ if(isset($_POST['odstran'])) {
     $pom = $database->odstran($_POST['login1']);
 
     if ($pom) {
-        echo '<script>alert("Podarilo sa odstrániť pouzivatela.")</script>';
+        echo alert("warning", "Pouzivatel odstraneny.");
     } else {
-        echo '<script>alert("Nepodarilo sa odstrániť používateľa.")</script>';
+        echo alert("danger", "Nepodarilo sa odspranit pouzivatela.");
     }
 }
 

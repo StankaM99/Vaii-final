@@ -2,11 +2,11 @@
 
 session_start();
 
-$_SESSION['loggedin'];
+$_SESSION['prihlaseny'];
 
-if(!$_SESSION['loggedin'])
+if($_SESSION['prihlaseny'] != true )
 {
-    $_SESSION['loggedin'] = false;
+    $_SESSION['prihlaseny'] = false;
 }
 
 require "db/dbFilm.php";
@@ -34,7 +34,7 @@ $filmy = $datab->load();
         ?>
 
         <?php
-            if(!$_SESSION['loggedin'])
+            if(!$_SESSION['prihlaseny'])
             {
                 echo '
                      <div class="odsad">
@@ -74,7 +74,7 @@ $filmy = $datab->load();
                             {
                                 echo '
                                 <div class="carousel-item active"> 
-                                    <img  alt=" " class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail" data-link='.$film->getLink().' src='.$film->getObrazok().' data-name='.$film->getNazov().'>
+                                    <img  alt=" " class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail" data-link='.$film->getLink().' src='.$film->getObrazok().' data-name='.'"'.$film->getNazov().'"'.'>
                                 </div>
                              ';
 
@@ -82,7 +82,7 @@ $filmy = $datab->load();
                             {
                                 echo '
                                 <div class="carousel-item"> 
-                                    <img alt=" " class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail" data-link='.$film->getLink().' src='.$film->getObrazok().' data-name='.$film->getNazov().'>
+                                    <img alt=" " class="img-fluid obrazok-car rounded mx-auto d-block img-thumbnail" data-link='.$film->getLink().' src='.$film->getObrazok().' data-name='.'"'.$film->getNazov().'"'.'>
                                 </div>
                              ';
                             }

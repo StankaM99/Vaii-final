@@ -33,16 +33,26 @@ class databFilm
         return $filmy;
     }
 
-    public function save($zadNazov, $zadRok, $zadZaner, $zadHod, $zadObrazok, $zadLink): bool
+    public function save($zadNazov, $zadRok, $zadZaner, $zadHod, $zadObrazok, $zadLink): int
     {
-        try {
-            $sql = 'INSERT INTO udaje.filmy(nazov, rok, zaner, hodnotenie, obrazok) VALUES (?,?,?,?,?,?)';
-            $this->film->prepare($sql)->execute([$zadNazov, $zadRok, $zadZaner, $zadHod, $zadObrazok, $zadLink]);
-            return true;
-        } catch (PDOException $e) {
-            echo 'Connection failed: ' . $e->getMessage();
-            return false;
+        if($this->skonLink($zadLink))
+        {
+            $novyLink = $this->konvLink($zadLink);
+
+            try {
+                $sql = 'INSERT INTO udaje.filmy(nazov, rok, zaner, hodnotenie, obrazok, link) VALUES (?,?,?,?,?,?)';
+                $this->film->prepare($sql)->execute([$zadNazov, $zadRok, $zadZaner, $zadHod, $zadObrazok, $novyLink]);
+                return 1;
+            } catch (PDOException $e) {
+                echo 'Connection failed: ' . $e->getMessage();
+                return 2;
+            }
+        } else
+        {
+            return 3;
         }
+
+
     }
 
     public function odstran($id): int
@@ -55,6 +65,16 @@ class databFilm
             echo 'Failed: ' . $e->getMessage();
             return 0;
         }
+    }
+
+    private function skonLink($zadLink) : bool
+    {
+        return strpos($zadLink,"https://www.youtube.com/watch?v=") === 0;
+    }
+
+    private function konvLink($zadLink): string
+    {
+        return str_replace("watch?v=", "embed/", $zadLink);
     }
 
 }

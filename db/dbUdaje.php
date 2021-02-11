@@ -52,7 +52,7 @@ class Databaza
     }
 
 
-    public function save(prihlasovacieUdaje $udaj) : bool
+    public function save(prihlasovacieUdaje $udaj) : int
     {
         try {
             if($this->skontrolujLogin()) {
@@ -62,14 +62,14 @@ class Databaza
 
                     $sql = 'INSERT INTO udaje.prihludaje(login, heslo) VALUES (?,?)';
                     $this->database->prepare($sql)->execute([$udaj->getLogin(), $hashHeslo]);
-                    return true;
+                    return 1;
                 } else {
-                    echo '<script>alert("Zadane hesla sa nezhoduju.")</script>';
-                    return false;
+
+                    return 2;
                 }
             } else{
-                echo '<script>alert("Zadany login uz existuje.")</script>';
-                return false;
+
+                return 3;
             }
         } catch (PDOException $e)
         {
@@ -87,7 +87,6 @@ class Databaza
 
                 $sql = "UPDATE udaje.prihludaje SET heslo=? WHERE login=?";
                 $this->database->prepare($sql)->execute([$hashHeslo, $zadlogin]);
-                echo '<script>alert("Heslo uspesne zmenene.")</script>';
                 return true;
             } else
             {

@@ -19,7 +19,7 @@ session_start();
     ?>
 
     <?php
-        if(!$_SESSION['loggedin'])
+        if(!$_SESSION['prihlaseny'])
         {
             echo '
                          <div class="odsad">

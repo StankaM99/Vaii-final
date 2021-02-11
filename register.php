@@ -2,16 +2,29 @@
 session_start();
 
 require "db/dbUdaje.php";
+require_once "alert.php";
+
 $database = new Databaza();
 
 if(isset($_POST['register'])) {
     $udaj = new prihlasovacieUdaje($_POST['meno'], $_POST['inputPassword'], $_POST['inputPasswordRep']);
     $pom = $database->save($udaj);
 
-    if($pom)
+    if($pom==1)
     {
         $_SESSION['meno'] = $_POST['meno'];
+        $_SESSION['prihlaseny'] = true;
+
         header("Location: user.php" );
+    } else if ($pom == 2)
+    {
+        echo alert("danger", "Zadane hesla sa nezhoduju.");
+    } else if ($pom == 3)
+    {
+        echo alert("danger", "Zadany login uz existuje.");
+    } else
+    {
+        echo alert("danger", "Chyba.");
     }
 }
 

@@ -18,7 +18,7 @@ session_start();
     ?>
 
     <?php
-    if(!$_SESSION['loggedin'])
+    if(!$_SESSION['prihlaseny'])
     {
         echo '
                      <div class="odsad">
@@ -49,34 +49,25 @@ session_start();
 
 </nav>
 
-<div class="uprava2">
-    <div class="potvrd2">
-        <div class="nadpis">
-            <div class = "cover">
-                <h2 class="cover-heading text-center">
-                    <strong>
-                        Tip na sledovanie :
-                    </strong>
-                </h2>
-            </div>
-        </div>
-    </div>
-
-</div>
-
 
 <div class="container">
     <div class="row justify-content-around">
         <div class="col-lg-6">
                 <script  src ="js/ajax.js"> </script>
                 <div id="tipFilm"></div>
-    </div>
+        </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-6 ">
                 <script  src ="js/ajaxS.js"> </script>
-                <div id="tipSerial"></div>
+                <div class="mt-4 mt-md-0" id="tipSerial"></div>
         </div>
     </div>
+
+        <a class="btn col-lg-2 col-6 offset-lg-5 offset-3 my-4 btn-lg btn-warning" onclick="volanie()">
+            <strong>
+                Chcem iny tip.
+            </strong>
+        </a>
 </div>
 
 <script>
@@ -86,18 +77,6 @@ session_start();
         dajTipSerial();
     }
 </script>
-
-
-<div class="bonus">
-    <div class="cena">
-        <a class="btn btn-lg btn-block btn-warning" onclick="volanie()">
-            <strong>
-                Chcem iny tip.
-            </strong>
-        </a>
-    </div>
-</div>
-
 
 </body>
 </html>

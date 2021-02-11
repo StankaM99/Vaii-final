@@ -3,6 +3,7 @@
 session_start();
 
 require "db/dbUdaje.php";
+require_once "alert.php";
 
 $database = new Databaza();
 
@@ -16,19 +17,19 @@ if(isset($_POST['prihlas'])) {
 
     else if ($pom == 1) {
         $_SESSION['meno'] = $_POST['meno'];
-        $_SESSION['loggedin'] = true;
+        $_SESSION['prihlaseny'] = true;
 
         $_SESSION['userId'] = $database->getIdByLogin($_POST['meno']);
 
         header("Location: user.php");
     } else if($pom == 2){
-        echo '<script>alert("Nepodarilo sa prihlasit. Zadane heslo nie je spravne.")</script>';
+        echo alert("danger", "Zadane heslo nie je spravne.");
     } else if($pom == 3)
     {
-        echo '<script>alert("Nepodarilo sa prihlasit. Zadany login neexistuje")</script>';
+        echo alert("danger", "Zadany login nie je spravny.");
     } else
     {
-        echo '<script>alert("Chyba.")</script>';
+        echo alert("danger", "Chyba.");
     }
 }
 ?>

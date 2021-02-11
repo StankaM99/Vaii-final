@@ -2,6 +2,7 @@
 
 require "../db/dbFilm.php";
 require "../db/dbSerial.php";
+require_once "../alert.php";
 
 $film = new databFilm();
 $serial = new databSerial();
@@ -11,12 +12,15 @@ if(isset($_POST['film']))
 {
     $pom = $film->save($_POST['nadpis'],$_POST['rok'], $_POST['zaner'], $_POST['hodnotenie'], $_POST['link'], $_POST['link2']);
 
-    if($pom)
+    if($pom==1)
     {
-        echo '<script>alert("Podarilo sa pridat tip.")</script>';
+        echo alert("warning", "Tip na film bol uspesne pridany.");
     }
-    else{
-        echo '<script>alert("Nepodarilo sa pridat tip.")</script>';
+    else if($pom == 2){
+        echo alert("danger", "Tip na film sa nepodarilo pridat.");
+    } else
+    {
+        echo alert("danger", "Nespravne zadany link na trailer.");
     }
 }
 
@@ -26,10 +30,10 @@ if(isset($_POST['serial']))
 
     if($pom)
     {
-        echo '<script>alert("Podarilo sa pridat tip.")</script>';
+        echo alert("warning", "Tip na serial bol uspesne pridany.");
     }
     else{
-        echo '<script>alert("Nepodarilo sa pridat tip.")</script>';
+        echo alert("danger", "Tip na serial sa nepodarilo pridat.");
     }
 }
 ?>
@@ -50,9 +54,9 @@ if(isset($_POST['serial']))
 </nav>
 
 
-<div class="container-fluid potvrd3">
+<div class="container-fluid mt-md-5">
     <div class="row justify-content-around">
-        <div class="card col-md-5">
+        <div class="card col-md-5 mb-md-4">
             <div class="card-header cover">
                 <h4>
                    Tip na film
@@ -77,14 +81,14 @@ if(isset($_POST['serial']))
 
                     <label for="basic-url" class="form-label">Link na obrazok:</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="link" id="basic-url" aria-describedby="basic-addon3">
+                        <input type="url" class="form-control" name="link" id="basic-url" aria-describedby="basic-addon3">
                     </div>
 
                     <br>
 
                     <label for="basic-url" class="form-label">Link na trailer:</label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="link2" id="basic-url" aria-describedby="basic-addon3">
+                        <input type="url" class="form-control" name="link2" id="basic-url" aria-describedby="basic-addon3">
                     </div>
 
                     <form method="post">
@@ -94,7 +98,7 @@ if(isset($_POST['serial']))
             </form>
         </div>
 
-        <div class="card col-md-5 mt-4 mt-md-0">
+        <div class="card col-md-5 my-4 my-md-0 mb-md-4">
             <div class="card-header cover">
                 <h4>
                     Tip na serial
@@ -121,7 +125,7 @@ if(isset($_POST['serial']))
 
                         <label for="basic-url" class="form-label">Link na obrazok:</label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="linkS" id="basic-url" aria-describedby="basic-addon3">
+                            <input type="url" class="form-control" name="linkS" id="basic-url" aria-describedby="basic-addon3">
                         </div>
 
                     <br>

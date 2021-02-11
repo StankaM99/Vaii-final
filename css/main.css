@@ -9,11 +9,18 @@ body
 
     width: 100vw;
     height: 100vh;
+
+    overflow-x: hidden;
 }
 
 .odsad
 {
     margin-right: 10px;
+}
+
+.odsad2
+{
+    margin-left: 30px;
 }
 
 .sledovat
@@ -51,7 +58,7 @@ body
     margin-left: 15%;
 }
 
-.bonus
+/*.bonus
 {
     position: relative;
     bottom: -65vh;
@@ -59,7 +66,7 @@ body
 
     margin-left: 30%;
     margin-right: 30%;
-}
+}*/
 
 .naStred
 {
@@ -116,6 +123,19 @@ body
     margin-top: 50px;
     margin-left: 250px;
 }
+
+.alert
+{
+    margin-bottom: 0px !important;
+    text-align: center;
+}
+
+/*.navbar{
+    position: absolute;
+    top: 0px;
+    width:100%;
+}*/
+
 
 textarea{
     width: 100%;

@@ -1,5 +1,6 @@
 <?php
 require "../db/dbFilm.php";
+require_once "../alert.php";
 
 
 $film = new databFilm();
@@ -10,10 +11,10 @@ if(isset($_POST['odstran']))
 
     if($pom == 1)
     {
-        echo '<script>alert("Podarilo sa odstrániť film.")</script>';
+        echo alert("warning", "Film bol uspesne odstraneny.");
     }
     else{
-        echo '<script>alert("Nepodarilo sa odstrániť film.")</script>';
+        echo alert("danger", "Film sa nepodarilo odstranit.");
     }
 }
 
@@ -39,7 +40,7 @@ if(isset($_POST['odstran']))
 <div class="register">
 
     <div class="cover">
-        <h3>Filmova databza</h3>
+        <h3>Filmova databaza</h3>
         <br>
     </div>
 

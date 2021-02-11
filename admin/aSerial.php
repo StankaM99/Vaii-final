@@ -1,5 +1,6 @@
 <?php
 require "../db/dbSerial.php";
+require_once "../alert.php";
 
 
 $serial = new databSerial();
@@ -10,10 +11,10 @@ if(isset($_POST['odstran']))
 
     if($pom)
     {
-        echo '<script>alert("Podarilo sa odstrániť serial.")</script>';
+        echo alert("warning", "Serial bol uspesne odstraneny.");
     }
     else{
-        echo '<script>alert("Nepodarilo sa odstrániť serial.")</script>';
+        echo alert("danger", "Serial sa nepodarilo ostranit.");
     }
 }
 
@@ -38,7 +39,7 @@ if(isset($_POST['odstran']))
 <div class="register">
 
     <div class="cover">
-        <h3>Serialova databza</h3>
+        <h3>Serialova databaza</h3>
         <br>
     </div>
 
